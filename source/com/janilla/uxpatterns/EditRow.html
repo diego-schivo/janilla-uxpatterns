@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Document title</title>
+	<link href="/EditRow.css" rel="stylesheet" />
+	<script src="/EditRow.js"></script>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<td></td>
+			</tr>
+		</thead>
+		<tbody>
+			<!--${list}-->
+		</tbody>
+	</table>
+</body>
+
+<template id="EditRow-List">
+	<!--${contacts}-->
+</template>
+
+<template id="EditRow-Item">
+	<tr>
+		<td>${name}</td>
+		<td>${email}</td>
+		<td>
+			<button class="edit" name="id" value="${id}">Edit</button>
+		</td>
+	</tr>
+</template>
+
+<template id="EditRow-ItemEdit">
+	<tr class="editing">
+		<td>
+			<input name="name" value="${name}" />
+		</td>
+		<td>
+			<input name="email" value="${email}" />
+		</td>
+		<td>
+			<button class="cancel" name="id" value="${id}">Cancel</button>
+			<button class="save" name="id" value="${id}">Save</button>
+		</td>
+	</tr>
+</template>
+
+</html>

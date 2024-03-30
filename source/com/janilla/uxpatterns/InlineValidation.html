@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Document title</title>
+	<link href="/InlineValidation.css" rel="stylesheet" />
+	<script src="/InlineValidation.js"></script>
+</head>
+<body>
+	<h3>Signup Form</h3>
+	<!--${form}-->
+</body>
+
+<template id="InlineValidation-Form">
+	<form>
+		<!--${email}-->
+		<div>
+			<label>First Name</label>
+			<input type="text" name="firstName" value="${contact.firstName}" />
+		</div>
+		<div>
+			<label>Last Name</label>
+			<input type="text" name="lastName" value="${contact.lastName}" />
+		</div>
+		<button disabled>Submit</button>
+	</form>
+</template>
+
+<template id="InlineValidation-Email">
+	<div class="${errorClass}">
+		<label>Email Address</label>
+		<input type="email" name="email" value="${contact.email}" />
+		<img src="/images/bars.svg" class="indicator" />
+		<!--${error}-->
+	</div>
+</template>
+
+<template id="InlineValidation-Error">
+	<div class="error-message">${}</div>
+</template>
+
+</html>

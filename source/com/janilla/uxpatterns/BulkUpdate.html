@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Document title</title>
+	<link href="/BulkUpdate.css" rel="stylesheet" />
+	<script src="/BulkUpdate.js"></script>
+</head>
+<body>
+	<!--${form}-->
+</body>
+
+<template id="BulkUpdate-Form">
+	<form>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Active</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--${users}-->
+			</tbody>
+		</table>
+		<input type="submit" value="Bulk Update" />
+		<span id="toast"></span>
+	</form>
+</template>
+
+<template id="BulkUpdate-Row">
+	<tr>
+		<td>${name}</td>
+		<td>${email}</td>
+		<td>
+			<input type="checkbox" name="active" value="${email}" data-${checkedAttribute} />
+		</td>
+	</tr>
+</template>
+
+<template id="BulkUpdate-Toast">
+	<span id="toast" aria-live="polite">Activated ${activated} and deactivated ${deactivated} users</span>
+</template>
+
+</html>

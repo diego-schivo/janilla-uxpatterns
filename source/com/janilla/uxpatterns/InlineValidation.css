@@ -1,0 +1,20 @@
+.indicator {
+	opacity: 0;
+}
+
+.request .indicator {
+	opacity: 1;
+	transition: opacity 200ms ease-in;
+}
+
+.error-message {
+	color: red;
+}
+
+.error input {
+	box-shadow: 0 0 3px #CC0000;
+}
+
+.valid input {
+	box-shadow: 0 0 3px #36cc00;
+}

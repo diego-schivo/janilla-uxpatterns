@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Document title</title>
+	<link href="/DeleteRow.css" rel="stylesheet" />
+	<script src="/DeleteRow.js"></script>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Status</th>
+				<td></td>
+			</tr>
+		</thead>
+		<tbody>
+			<!--${list}-->
+		</tbody>
+	</table>
+</body>
+
+<template id="DeleteRow-List">
+	<!--${contacts}-->
+</template>
+
+<template id="DeleteRow-Item">
+	<tr>
+		<td>${name}</td>
+		<td>${email}</td>
+		<td>${status}</td>
+		<td>
+			<button name="id" value="${id}">Delete</button>
+		</td>
+	</tr>
+</template>
+
+</html>

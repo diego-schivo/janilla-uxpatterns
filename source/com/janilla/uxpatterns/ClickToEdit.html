@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Document title</title>
+	<script src="/ClickToEdit.js"></script>
+</head>
+<body>
+	<!--${details}-->
+</body>
+
+<template id="ClickToEdit-Details">
+	<div>
+		<div>
+			<label>First Name</label>: ${contact.firstName}
+		</div>
+		<div>
+			<label>Last Name</label>: ${contact.lastName}
+		</div>
+		<div>
+			<label>Email Address</label>: ${contact.email}
+		</div>
+		<button id="edit">Click To Edit</button>
+	</div>
+</template>
+
+<template id="ClickToEdit-Form">
+	<form>
+		<div>
+			<label>First Name</label>
+			<input type="text" name="firstName" value="${contact.firstName}" />
+		</div>
+		<div>
+			<label>Last Name</label>
+			<input type="text" name="lastName" value="${contact.lastName}" />
+		</div>
+		<div>
+			<label>Email Address</label>
+			<input type="email" name="email" value="${contact.email}" />
+		</div>
+		<button>Submit</button>
+		<button id="cancel">Cancel</button>
+	</form>
+</template>
+
+</html>
