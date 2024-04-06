@@ -24,13 +24,9 @@
 class BulkUpdate {
 
 	selector;
-	
-	get toast() {
-		return this.selector().querySelector('#toast');
-	}
 
 	listen = () => {
-		this.selector().addEventListener('submit', this.handleFormSubmit);
+		this.selector().querySelector('form').addEventListener('submit', this.handleFormSubmit);
 	}
 
 	handleFormSubmit = async e => {
@@ -39,15 +35,15 @@ class BulkUpdate {
 			method: 'POST',
 			body: new URLSearchParams(new FormData(e.currentTarget))
 		});
-		this.toast.outerHTML = await s.text();
-		const t = this.toast;
+		this.selector().querySelector('#toast').outerHTML = await s.text();
+		const t = this.selector().querySelector('#toast');
 		t.classList.add('settling');
 		setTimeout(() => t.classList.remove('settling'), 3000);
 	}
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	const c = new BulkUpdate();
-	c.selector = () => document.body.firstElementChild;
-	c.listen();
+	const x = new BulkUpdate();
+	x.selector = () => document.querySelector('main');
+	x.listen();
 });

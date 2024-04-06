@@ -1,0 +1,17 @@
+@import 'base.css';
+
+.sortable {
+	display: table-cell;
+
+	> div {
+		border: 1px solid #DEDEDE;
+		padding: 12px;
+		margin: 8px;
+		width: 200px;
+		cursor: grab;
+	}
+}
+
+.indicator {
+	opacity: 0;
+}

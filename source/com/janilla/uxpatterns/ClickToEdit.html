@@ -1,25 +1,30 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<title>Document title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Click To Edit</title>
+	<link href="/ClickToEdit.css" rel="stylesheet" />
 	<script src="/ClickToEdit.js"></script>
 </head>
 <body>
-	<!--${details}-->
+	<main>
+		<!--${contact}-->
+	</main>
 </body>
 
 <template id="ClickToEdit-Details">
 	<div>
 		<div>
-			<label>First Name</label>: ${contact.firstName}
+			<label>First Name</label>: ${firstName}
 		</div>
 		<div>
-			<label>Last Name</label>: ${contact.lastName}
+			<label>Last Name</label>: ${lastName}
 		</div>
 		<div>
-			<label>Email Address</label>: ${contact.email}
+			<label>Email Address</label>: ${email}
 		</div>
-		<button id="edit">Click To Edit</button>
+		<button id="edit" class="button">Click To Edit</button>
 	</div>
 </template>
 
@@ -27,18 +32,18 @@
 	<form>
 		<div>
 			<label>First Name</label>
-			<input type="text" name="firstName" value="${contact.firstName}" />
+			<input type="text" name="firstName" value="${firstName}" />
 		</div>
 		<div>
 			<label>Last Name</label>
-			<input type="text" name="lastName" value="${contact.lastName}" />
+			<input type="text" name="lastName" value="${lastName}" />
 		</div>
 		<div>
 			<label>Email Address</label>
-			<input type="email" name="email" value="${contact.email}" />
+			<input type="email" name="email" value="${email}" />
 		</div>
-		<button>Submit</button>
-		<button id="cancel">Cancel</button>
+		<button class="button">Submit</button>
+		<button id="cancel" class="button">Cancel</button>
 	</form>
 </template>
 

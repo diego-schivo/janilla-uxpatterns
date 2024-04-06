@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Update Other Content</title>
+	<link href="/UpdateOtherContent.css" rel="stylesheet" />
+	<script src="/UpdateOtherContent.js"></script>
+</head>
+<body>
+	<main>
+		<h2>Contacts</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody id="contacts-table">
+			</tbody>
+		</table>
+		<h2>Add A Contact</h2>
+		<!--${form}-->
+	</main>
+</body>
+
+<template id="UpdateOtherContent-row">
+	<tr>
+		<td>${name}</td>
+		<td>${email}</td>
+	</tr>
+</template>
+
+<template id="UpdateOtherContent-form">
+	<form>
+		<label>
+			Name
+			<input name="name" type="text" />
+		</label>
+		<label>
+			Email
+			<input name="email" type="email" />
+		</label>
+		<div>
+			<button class="button">Add</button>
+		</div>
+	</form>
+</template>
+
+<template id="UpdateOtherContent-Add">
+	<table>
+		<tbody>
+			<!--${row}-->
+		</tbody>
+	</table>
+	<!--${form}-->
+</template>
+
+</html>

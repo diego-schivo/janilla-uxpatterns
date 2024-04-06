@@ -1,37 +1,37 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<title>Document title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Delete Row</title>
 	<link href="/DeleteRow.css" rel="stylesheet" />
 	<script src="/DeleteRow.js"></script>
 </head>
 <body>
-	<table>
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Email</th>
-				<th>Status</th>
-				<td></td>
-			</tr>
-		</thead>
-		<tbody>
-			<!--${list}-->
-		</tbody>
-	</table>
+	<main>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Status</th>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+				<!--${contacts}-->
+			</tbody>
+		</table>
+	</main>
 </body>
 
-<template id="DeleteRow-List">
-	<!--${contacts}-->
-</template>
-
-<template id="DeleteRow-Item">
+<template id="DeleteRow-Row">
 	<tr>
 		<td>${name}</td>
 		<td>${email}</td>
 		<td>${status}</td>
 		<td>
-			<button name="id" value="${id}">Delete</button>
+			<button class="button" name="id" value="${id}">Delete</button>
 		</td>
 	</tr>
 </template>

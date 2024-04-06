@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Infinite Scroll</title>
+	<link href="/InfiniteScroll.css" rel="stylesheet" />
+	<script src="/InfiniteScroll.js"></script>
+</head>
+<body>
+	<main>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>ID</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--${page}-->
+			</tbody>
+		</table>
+		<div class="indicator-div">
+			<img src="/images/bars.svg" />
+		</div>
+	</main>
+</body>
+
+<template id="InfiniteScroll-Page">
+	<!--${contacts}-->
+</template>
+
+<template id="InfiniteScroll-Row">
+	<tr>
+		<td>${name}</td>
+		<td>${email}</td>
+		<td>${id}</td>
+	</tr>
+</template>
+
+</html>

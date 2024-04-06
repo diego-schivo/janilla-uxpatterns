@@ -1,0 +1,5 @@
+@import 'base.css';
+
+td[colspan="3"] {
+	text-align: center;
+}

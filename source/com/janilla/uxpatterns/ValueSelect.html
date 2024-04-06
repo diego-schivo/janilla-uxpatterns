@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Value Select</title>
+	<link href="/ValueSelect.css" rel="stylesheet" />
+	<script src="/ValueSelect.js"></script>
+</head>
+<body>
+	<main>
+		<h3>Pick A Make/Model</h3>
+		<form>
+			<div>
+				<label>Make</label>
+				<select name="make">
+					<!--${makes}-->
+				</select>
+			</div>
+			<div>
+				<label>Model</label>
+				<select name="model">
+					<!--${models}-->
+				</select>
+				<img class="indicator" width="20" src="/images/bars.svg" />
+			</div>
+		</form>
+	</main>
+</body>
+
+<template id="ValueSelect-OptionList">
+	<!--${entries}-->
+</template>
+
+<template id="ValueSelect-Entry">
+	<option value="${key}">${value}</option>
+</template>
+
+</html>

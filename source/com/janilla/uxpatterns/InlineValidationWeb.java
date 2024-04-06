@@ -23,75 +23,26 @@
  */
 package com.janilla.uxpatterns;
 
-import com.janilla.http.HttpExchange;
 import com.janilla.web.Handle;
 import com.janilla.web.Render;
 
 public class InlineValidationWeb {
 
-	@Handle(method = "GET", path = "/inline-validation/contact")
-	public Object getForm(HttpExchange exchange) {
-		var f = new Form(null);
-		return exchange.getRequest().getHeaders().get("Accept").equals("*/*") ? f : new Page(f);
+	@Handle(method = "GET", path = "/inline-validation")
+	public Page getPage() {
+		return new Page(null);
 	}
 
 	@Handle(method = "POST", path = "/inline-validation/contact/email")
 	public Email validateEmail(Contact contact) throws InterruptedException {
 		Thread.sleep(500);
-		var e = !contact.email.equals("test@test.com") ? "That email is already taken. Please enter another email."
+		var e = !contact.getEmail().equals("test@test.com") ? "That email is already taken. Please enter another email."
 				: null;
 		return new Email(contact, e);
 	}
 
-	public static class Contact {
-
-		private String email;
-
-		private String firstName;
-
-		private String lastName;
-
-		public Contact() {
-		}
-
-		public Contact(String email, String firstName, String lastName) {
-			super();
-			this.email = email;
-			this.firstName = firstName;
-			this.lastName = lastName;
-		}
-
-		public String getEmail() {
-			return email;
-		}
-
-		public void setEmail(String email) {
-			this.email = email;
-		}
-
-		public String getFirstName() {
-			return firstName;
-		}
-
-		public void setFirstName(String firstName) {
-			this.firstName = firstName;
-		}
-
-		public String getLastName() {
-			return lastName;
-		}
-
-		public void setLastName(String lastName) {
-			this.lastName = lastName;
-		}
-	}
-
 	@Render(template = "InlineValidation.html")
-	public record Page(Form form) {
-	}
-
-	@Render(template = "InlineValidation-Form.html")
-	public record Form(Contact contact) {
+	public record Page(Contact contact) {
 
 		public Email email() {
 			return new Email(contact, null);
@@ -102,7 +53,7 @@ public class InlineValidationWeb {
 	public record Email(Contact contact, @Render(template = "InlineValidation-Error.html") String error) {
 
 		public String errorClass() {
-			return error != null ? "error" : null;
+			return error != null ? "error" : "valid";
 		}
 	}
 }

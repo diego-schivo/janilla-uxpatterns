@@ -1,9 +1,11 @@
+@import 'base.css';
+
 #toast {
 	background: #E1F0DA;
 	opacity: 0;
 	transition: opacity 3s ease-out;
 	
 	&.settling {
-		opacity: 100;
+		opacity: 1;
 	}
 }

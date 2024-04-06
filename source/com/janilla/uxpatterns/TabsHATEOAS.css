@@ -1,0 +1,28 @@
+@import 'base.css';
+
+#tabs {
+	> .tab-list {
+		border-bottom: solid 3px #eee;
+	
+		button {
+			background: transparent;
+			border: none;
+			cursor: pointer;
+			display: inline-block;
+			padding: 5px 10px;
+			
+			&.selected {
+				background: #eee;
+			}
+			
+			&:hover {
+				color: rgb(51, 102, 204);
+			}
+		}
+	}
+
+	> .tab-content {
+		margin-bottom: 100px;
+		padding: 10px;
+	}
+}

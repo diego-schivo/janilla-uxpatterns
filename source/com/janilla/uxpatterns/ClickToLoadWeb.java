@@ -28,37 +28,38 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import com.janilla.http.HttpExchange;
 import com.janilla.reflect.Parameter;
 import com.janilla.web.Handle;
 import com.janilla.web.Render;
 
 public class ClickToLoadWeb {
 
+	@Handle(method = "GET", path = "/click-to-load")
+	public Page getPage() {
+		return new Page(getResultPage(1));
+	}
+
 	@Handle(method = "GET", path = "/click-to-load/contacts")
-	public Object getContacts(@Parameter(name = "page") int page, HttpExchange exchange) {
+	public ResultPage getResultPage(@Parameter(name = "page") int page) {
 		var s = Math.max(page - 1, 0) * 10;
-		var d = new Details(IntStream.range(s, s + 10)
-				.mapToObj(i -> new Contact("Agent Smith", "void" + (i + 10) + "@null.org",
-						ThreadLocalRandom.current().ints(15, 0, 17)
-								.mapToObj(j -> j < 10 ? String.valueOf(j) : Character.toString('A' + j - 10))
-								.collect(Collectors.joining())))
-				.toList());
-		return exchange.getRequest().getHeaders().get("Accept").equals("*/*") ? d : new Page(d);
+		return new ResultPage(IntStream.range(s, s + 10).mapToObj(i -> {
+			var n = "Agent Smith";
+			var e = "void" + (i + 10) + "@null.org";
+			var j = ThreadLocalRandom.current().ints(15, 0, 17)
+					.mapToObj(k -> k < 10 ? String.valueOf(k) : Character.toString('A' + k - 10))
+					.collect(Collectors.joining());
+			return new Contact(n, e, j);
+		}).toList());
 	}
 
 	public record Contact(String name, String email, String id) {
 	}
 
 	@Render(template = "ClickToLoad.html")
-	public record Page(Details details) {
+	public record Page(ResultPage page) {
 	}
 
-	@Render(template = "ClickToLoad-Details.html")
-	public record Details(List<@Render(template = "ClickToLoad-Row.html") Contact> contacts) {
-	}
-
-	@Render(template = "ClickToLoad-Form.html")
-	public record Form(Contact contact) {
+	@Render(template = "ClickToLoad-Page.html")
+	public record ResultPage(List<@Render(template = "ClickToLoad-Row.html") Contact> contacts) {
 	}
 }

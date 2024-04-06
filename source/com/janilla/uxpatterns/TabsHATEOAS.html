@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tabs HATEOAS</title>
+	<link href="/TabsHATEOAS.css" rel="stylesheet" />
+	<script src="/TabsHATEOAS.js"></script>
+</head>
+<body>
+	<main>
+		<div id="tabs"></div>
+	</main>
+</body>
+
+<template id="TabsHATEOAS-Tabs">
+	<div class="tab-list" role="tablist">
+		<!--${tabs}-->
+	</div>
+	<div id="tab-content" role="tabpanel" class="tab-content">${text}</div>
+</template>
+
+<template id="TabsHATEOAS-Tab">
+	<button class="${selectedClass}" role="tab" aria-selected="false" aria-controls="tab-content">${}</button>
+</template>
+
+</html>

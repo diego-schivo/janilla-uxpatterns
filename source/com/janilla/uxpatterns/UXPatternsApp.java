@@ -24,14 +24,22 @@
 package com.janilla.uxpatterns;
 
 import java.io.IOException;
+import java.net.URI;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import com.janilla.http.HttpExchange;
+import com.janilla.http.HttpRequest;
 import com.janilla.http.HttpServer;
 import com.janilla.io.IO;
 import com.janilla.util.Lazy;
+import com.janilla.util.Util;
 import com.janilla.web.ApplicationHandlerBuilder;
+import com.janilla.web.Handle;
+import com.janilla.web.Render;
 
 public class UXPatternsApp {
 
@@ -45,7 +53,7 @@ public class UXPatternsApp {
 			a.setConfiguration(c);
 		}
 
-		var s = new HttpServer();
+		var s = a.new Server();
 		s.setPort(Integer.parseInt(a.getConfiguration().getProperty("uxpatterns.server.port")));
 		s.setHandler(a.getHandler());
 		s.run();
@@ -69,5 +77,37 @@ public class UXPatternsApp {
 
 	public IO.Consumer<HttpExchange> getHandler() {
 		return handler.get();
+	}
+
+	@Handle(method = "GET", path = "/")
+	public App getApp() {
+		return new App(Util.getPackageClasses(getClass().getPackageName()).map(Class::getSimpleName)
+				.filter(x -> x.endsWith("Web")).map(x -> x.substring(0, x.length() - 3)).sorted().map(x -> {
+//					var y = x.split("(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])");
+					var y = Util.splitCamelCase(x);
+					return new Link(
+							URI.create(
+									"/" + Arrays.stream(y).map(String::toLowerCase).collect(Collectors.joining("-"))),
+							Arrays.stream(y).collect(Collectors.joining(" ")));
+				}).toList());
+	}
+
+	class Server extends HttpServer {
+
+		@Override
+		protected HttpExchange newExchange(HttpRequest request) {
+			return new Exchange();
+		}
+	}
+
+	public class Exchange extends CustomHttpExchange {
+	}
+
+	@Render(template = "App.html")
+	public record App(List<Link> links) {
+	}
+
+	@Render(template = "App-Link.html")
+	public record Link(URI uri, String text) {
 	}
 }

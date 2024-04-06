@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Modal UIkit</title>
+	<link href="/ModalUIkit.css" rel="stylesheet" />
+	<link href="//cdn.jsdelivr.net/npm/uikit@3.19.2/dist/css/uikit.min.css" rel="stylesheet" />
+	<script src="/ModalUIkit.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/uikit@3.19.2/dist/js/uikit.min.js"></script>
+</head>
+<body>
+	<main>
+		<button id="showButton" class="uk-button uk-button-primary">Open Modal</button>
+		<div id="modals-here"></div>
+	</main>
+</body>
+
+<template id="ModalUIkit-modal">
+	<div id="modal" class="uk-modal">
+		<div class="uk-modal-dialog uk-modal-body">
+			<h2 class="uk-modal-title">Modal Dialog</h2>
+			<form>
+				<div class="uk-margin">
+					<input class="uk-input" placeholder="What is Your Name?" />
+				</div>
+				<div class="uk-margin">
+					<input class="uk-input" placeholder="What is Your Quest?" />
+				</div>
+				<div class="uk-margin">
+					<input class="uk-input" placeholder="What is Your Favorite Color?" />
+				</div>
+				<button class="uk-button uk-button-primary">Save Changes</button>
+				<button id="cancelButton" class="uk-button uk-button-default">Close</button>
+			</form>
+		</div>
+	</div>
+</template>
+
+</html>

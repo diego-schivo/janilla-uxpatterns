@@ -1,32 +1,32 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<title>Document title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bulk Update</title>
 	<link href="/BulkUpdate.css" rel="stylesheet" />
 	<script src="/BulkUpdate.js"></script>
 </head>
 <body>
-	<!--${form}-->
+	<main>
+		<form>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Active</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--${users}-->
+				</tbody>
+			</table>
+			<button>Bulk Update</button>
+			<span id="toast"></span>
+		</form>
+	</main>
 </body>
-
-<template id="BulkUpdate-Form">
-	<form>
-		<table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Active</th>
-				</tr>
-			</thead>
-			<tbody>
-				<!--${users}-->
-			</tbody>
-		</table>
-		<input type="submit" value="Bulk Update" />
-		<span id="toast"></span>
-	</form>
-</template>
 
 <template id="BulkUpdate-Row">
 	<tr>

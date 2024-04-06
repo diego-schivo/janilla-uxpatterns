@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Progress Bar</title>
+	<link href="/ProgressBar.css" rel="stylesheet" />
+	<script src="/ProgressBar.js"></script>
+</head>
+<body>
+	<!--${ui}-->
+</body>
+
+<template id="ProgressBar-UI">
+	<main>
+		<h3 data-${titleAttributes}>${title}</h3>
+		<!--${bar}-->
+		<!--${button}-->
+	</main>
+</template>
+
+<template id="ProgressBar-bar">
+	<div id="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${}" aria-labelledby="pblabel">
+		<div style="flex-basis: ${}%"></div>
+	</div>
+</template>
+
+<template id="ProgressBar-button">
+	<button id="start" class="button">${}</button>
+</template>
+
+</html>

@@ -1,50 +1,55 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<title>Document title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Edit Row</title>
 	<link href="/EditRow.css" rel="stylesheet" />
 	<script src="/EditRow.js"></script>
 </head>
 <body>
-	<table>
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Email</th>
-				<td></td>
-			</tr>
-		</thead>
-		<tbody>
-			<!--${list}-->
-		</tbody>
-	</table>
+	<main>
+		<table>
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+				<!--${contacts}-->
+			</tbody>
+		</table>
+	</main>
 </body>
 
-<template id="EditRow-List">
-	<!--${contacts}-->
-</template>
-
-<template id="EditRow-Item">
+<template id="EditRow-Row">
 	<tr>
-		<td>${name}</td>
+		<td>${firstName}</td>
+		<td>${lastName}</td>
 		<td>${email}</td>
 		<td>
-			<button class="edit" name="id" value="${id}">Edit</button>
+			<button class="button" name="id" value="${id}">Edit</button>
 		</td>
 	</tr>
 </template>
 
-<template id="EditRow-ItemEdit">
+<template id="EditRow-Editor">
 	<tr class="editing">
 		<td>
-			<input name="name" value="${name}" />
+			<input name="firstName" value="${firstName}" />
+		</td>
+		<td>
+			<input name="lastName" value="${lastName}" />
 		</td>
 		<td>
 			<input name="email" value="${email}" />
 		</td>
 		<td>
-			<button class="cancel" name="id" value="${id}">Cancel</button>
-			<button class="save" name="id" value="${id}">Save</button>
+			<button id="cancel" class="button" name="id" value="${id}">Cancel</button>
+			<button id="save" class="button" name="id" value="${id}">Save</button>
 		</td>
 	</tr>
 </template>

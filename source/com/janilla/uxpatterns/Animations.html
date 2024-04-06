@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Animations</title>
+	<link href="/Animations.css" rel="stylesheet" />
+	<script src="/Animations.js"></script>
+</head>
+<body>
+	<main>
+		<div class="color-demo" class="smooth" style="color: ${color}">Color Swap Demo</div>
+		<div>
+			<button class="fade-me-out">Fade Me Out</button>
+		</div>
+		<div>
+			<!--${fadeIn}-->
+		</div>
+		<div aria-live="polite">
+			<form>
+				<label>Name:</label>
+				<input name="name">
+				<br />
+				<button>Submit</button>
+			</form>
+		</div>
+		<div class="demo">Toggle Demo</div>
+		<div class="slide-it">
+			<!--${content}-->
+		</div>
+	</main>
+</body>
+
+<template id="Animations-FadeIn">
+	<button class="fade-me-in">Fade Me In</button>
+</template>
+
+<template id="Animations-Content">
+	<h1>${title}</h1>
+	<button>${text}</button>
+</template>
+
+</html>

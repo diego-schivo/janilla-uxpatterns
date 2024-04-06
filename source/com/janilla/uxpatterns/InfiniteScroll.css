@@ -1,0 +1,10 @@
+@import 'base.css';
+
+.indicator-div {
+	display: none;
+	text-align: center;
+
+	img {
+		width: 60px;
+	}
+}

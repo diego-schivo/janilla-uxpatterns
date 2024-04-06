@@ -26,10 +26,10 @@ class DeleteRow {
 	selector;
 
 	listen = () => {
-		this.selector().querySelectorAll('button').forEach(x => x.addEventListener('click', this.handleClick));
+		this.selector().querySelectorAll('button').forEach(x => x.addEventListener('click', this.handleButtonClick));
 	}
 
-	handleClick = async e => {
+	handleButtonClick = async e => {
 		const b = e.currentTarget;
 		if (!confirm('Are you sure?'))
 			return;
@@ -41,7 +41,7 @@ class DeleteRow {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	const c = new DeleteRow();
-	c.selector = () => document.body.firstElementChild;
-	c.listen();
+	const x = new DeleteRow();
+	x.selector = () => document.querySelector('main');
+	x.listen();
 });

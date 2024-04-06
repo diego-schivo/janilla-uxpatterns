@@ -1,18 +1,20 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<title>Document title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Lazy Load</title>
 	<link href="/LazyLoad.css" rel="stylesheet" />
 	<script src="/LazyLoad.js"></script>
 </head>
 <body>
-	<div>
-		<img alt="Result loading..." width="150" src="/images/bars.svg" />
-	</div>
+	<main>
+		<img src="/images/bars.svg" alt="Result loading..." width="150" />
+	</main>
 </body>
 
 <template id="LazyLoad-Graph">
-	<img alt="Tokyo Climate" src="/images/tokyo.png" />
+	<img src="/images/tokyo.png" alt="Tokyo Climate" />
 </template>
 
 </html>

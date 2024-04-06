@@ -26,9 +26,9 @@ class EditRow {
 	selector;
 
 	listen = () => {
-		this.selector().querySelectorAll('.edit').forEach(x => x.addEventListener('click', this.handleEditClick));
-		this.selector().querySelectorAll('.cancel').forEach(x => x.addEventListener('click', this.handleCancelClick));
-		this.selector().querySelectorAll('.save').forEach(x => x.addEventListener('click', this.handleSaveClick));
+		this.selector().querySelectorAll('tr:not(.editing) button').forEach(x => x.addEventListener('click', this.handleEditClick));
+		this.selector().querySelector('#cancel')?.addEventListener('click', this.handleCancelClick);
+		this.selector().querySelector('#save')?.addEventListener('click', this.handleSaveClick);
 	}
 
 	handleEditClick = async e => {
@@ -56,21 +56,20 @@ class EditRow {
 		const r = b.closest('tr');
 		const s = await fetch(`/edit-row/contact/${b.value}`, {
 			method: 'PUT',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(Object.fromEntries([...r.querySelectorAll('input')].map(x => [x.name, x.value])))
+			body: new URLSearchParams(Object.fromEntries([...r.querySelectorAll('input')].map(x => [x.name, x.value])))
 		});
 		r.outerHTML = await s.text();
 		this.listen();
 	}
 
 	cancelEdit = async row => {
-		const s = await fetch(`/edit-row/contact/${row.querySelector('.cancel').value}`);
+		const s = await fetch(`/edit-row/contact/${row.querySelector('#cancel').value}`);
 		row.outerHTML = await s.text();
 	}
 }
 
 document.addEventListener('DOMContentLoaded', () => {
 	const c = new EditRow();
-	c.selector = () => document.body.firstElementChild;
+	c.selector = () => document.querySelector('main');
 	c.listen();
 });

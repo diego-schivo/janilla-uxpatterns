@@ -36,8 +36,7 @@ class InlineValidation {
 		p.classList.add('request');
 		const s = await fetch('/inline-validation/contact/email', {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(Object.fromEntries([...f.querySelectorAll('input')].map(x => [x.name, x.value])))
+			body: new URLSearchParams(Object.fromEntries([...f.querySelectorAll('input')].map(x => [x.name, x.value])))
 		});
 		p.outerHTML = await s.text();
 		this.listen();
@@ -45,7 +44,7 @@ class InlineValidation {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	const v = new InlineValidation();
-	v.selector = () => document.body;
-	v.listen();
+	const x = new InlineValidation();
+	x.selector = () => document.querySelector('main');
+	x.listen();
 });

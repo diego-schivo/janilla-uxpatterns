@@ -23,82 +23,35 @@
  */
 package com.janilla.uxpatterns;
 
-import com.janilla.http.HttpExchange;
 import com.janilla.web.Handle;
 import com.janilla.web.Render;
 
 public class ClickToEditWeb {
 
-	private static Contact contact = new Contact("Joe", "Blow", "joe@blow.com");
+	private static Contact contact = new Contact(1, "Joe", "Blow", "joe@blow.com");
+
+	@Handle(method = "GET", path = "/click-to-edit")
+	public Page getPage() {
+		return new Page(getContact(1));
+	}
 
 	@Handle(method = "GET", path = "/click-to-edit/contact/(\\d+)")
-	public Object getContact(long id, HttpExchange exchange) {
-		var d = new Details(contact);
-		return exchange.getRequest().getHeaders().get("Accept").equals("*/*") ? d : new Page(d);
+	public @Render(template = "ClickToEdit-Details.html") Contact getContact(long id) {
+		return contact;
 	}
 
 	@Handle(method = "GET", path = "/click-to-edit/contact/(\\d+)/edit")
-	public Form editContact(long id) {
-		return new Form(contact);
+	public @Render(template = "ClickToEdit-Form.html") Contact editContact(long id) {
+		return contact;
 	}
 
 	@Handle(method = "PUT", path = "/click-to-edit/contact/(\\d+)")
-	public Details putContact(Contact contact) {
+	public @Render(template = "ClickToEdit-Details.html") Contact putContact(Contact contact) {
 		ClickToEditWeb.contact = contact;
-		return new Details(contact);
-	}
-
-	public static class Contact {
-
-		private String firstName;
-
-		private String lastName;
-
-		private String email;
-
-		public Contact() {
-		}
-
-		public Contact(String firstName, String lastName, String email) {
-			this.firstName = firstName;
-			this.lastName = lastName;
-			this.email = email;
-		}
-
-		public String getFirstName() {
-			return firstName;
-		}
-
-		public void setFirstName(String firstName) {
-			this.firstName = firstName;
-		}
-
-		public String getLastName() {
-			return lastName;
-		}
-
-		public void setLastName(String lastName) {
-			this.lastName = lastName;
-		}
-
-		public String getEmail() {
-			return email;
-		}
-
-		public void setEmail(String email) {
-			this.email = email;
-		}
+		return contact;
 	}
 
 	@Render(template = "ClickToEdit.html")
-	public record Page(Details details) {
-	}
-
-	@Render(template = "ClickToEdit-Details.html")
-	public record Details(Contact contact) {
-	}
-
-	@Render(template = "ClickToEdit-Form.html")
-	public record Form(Contact contact) {
+	public record Page(@Render(template = "ClickToEdit-Details.html") Contact contact) {
 	}
 }

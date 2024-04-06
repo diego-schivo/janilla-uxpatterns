@@ -24,27 +24,26 @@
 package com.janilla.uxpatterns;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.janilla.frontend.RenderEngine;
 import com.janilla.frontend.Renderer;
-import com.janilla.http.HttpExchange;
 import com.janilla.reflect.Parameter;
 import com.janilla.web.Handle;
 import com.janilla.web.Render;
 
 public class DeleteRowWeb {
 
-	private static java.util.List<Contact> contacts = Stream.of(new Contact(0, "Joe Smith", "joe@smith.org", true),
+	private static List<Contact> contacts = Stream.of(new Contact(0, "Joe Smith", "joe@smith.org", true),
 			new Contact(1, "Angie MacDowell", "angie@macdowell.org", true),
 			new Contact(2, "Fuqua Tarkenton", "fuqua@tarkenton.org", true),
 			new Contact(3, "Kim Yee", "kim@yee.org", false)).collect(Collectors.toCollection(ArrayList::new));
 
-	@Handle(method = "GET", path = "/delete-row/contacts")
-	public Object getContacts(HttpExchange exchange) {
-		var l = new List(contacts);
-		return exchange.getRequest().getHeaders().get("Accept").equals("*/*") ? l : new Page(l);
+	@Handle(method = "GET", path = "/delete-row")
+	public Page getPage() {
+		return new Page(contacts);
 	}
 
 	@Handle(method = "DELETE", path = "/delete-row/contact/(\\d+)")
@@ -56,11 +55,7 @@ public class DeleteRowWeb {
 	}
 
 	@Render(template = "DeleteRow.html")
-	public record Page(List list) {
-	}
-
-	@Render(template = "DeleteRow-List.html")
-	public record List(java.util.List<@Render(template = "DeleteRow-Item.html") Contact> contacts) implements Renderer {
+	public record Page(List<@Render(template = "DeleteRow-Row.html") Contact> contacts) implements Renderer {
 
 		@Override
 		public boolean evaluate(RenderEngine engine) {

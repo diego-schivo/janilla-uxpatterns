@@ -28,7 +28,6 @@ import java.util.Set;
 
 import com.janilla.frontend.RenderEngine;
 import com.janilla.frontend.Renderer;
-import com.janilla.http.HttpExchange;
 import com.janilla.reflect.Parameter;
 import com.janilla.web.Handle;
 import com.janilla.web.Render;
@@ -39,10 +38,9 @@ public class BulkUpdateWeb {
 			new User("Angie MacDowell", "angie@macdowell.org", true),
 			new User("Fuqua Tarkenton", "fuqua@tarkenton.org", true), new User("Kim Yee", "kim@yee.org", false));
 
-	@Handle(method = "GET", path = "/bulk-update/users")
-	public Object getUsers(HttpExchange exchange) {
-		var f = new Form(users);
-		return exchange.getRequest().getHeaders().get("Accept").equals("*/*") ? f : new Page(f);
+	@Handle(method = "GET", path = "/bulk-update")
+	public Object getPage() {
+		return new Page(users);
 	}
 
 	@Handle(method = "POST", path = "/bulk-update/users")
@@ -66,46 +64,8 @@ public class BulkUpdateWeb {
 		return new Toast(m, n);
 	}
 
-	public static class User {
-
-		private String name;
-
-		private String email;
-
-		private boolean active;
-
-		public User() {
-		}
-
-		public User(String name, String email, boolean active) {
-			this.name = name;
-			this.email = email;
-			this.active = active;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public String getEmail() {
-			return email;
-		}
-
-		public boolean isActive() {
-			return active;
-		}
-
-		public void setActive(boolean active) {
-			this.active = active;
-		}
-	}
-
 	@Render(template = "BulkUpdate.html")
-	public record Page(Form form) {
-	}
-
-	@Render(template = "BulkUpdate-Form.html")
-	public record Form(List<@Render(template = "BulkUpdate-Row.html") User> users) implements Renderer {
+	public record Page(List<@Render(template = "BulkUpdate-Row.html") User> users) implements Renderer {
 
 		@Override
 		public boolean evaluate(RenderEngine engine) {

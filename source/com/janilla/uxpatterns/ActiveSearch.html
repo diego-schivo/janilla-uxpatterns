@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Active Search</title>
+	<link href="/ActiveSearch.css" rel="stylesheet" />
+	<script src="/ActiveSearch.js"></script>
+</head>
+<body>
+	<main>
+		<h3>
+			Search Contacts
+			<span class="indicator">
+				<img src="/images/bars.svg" />
+				Searching...
+			</span>
+		</h3>
+		<input type="search" name="search" placeholder="Begin Typing To Search Users..." />
+		<table class="table">
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody class="search-results">
+			</tbody>
+		</table>
+	</main>
+</body>
+
+<template id="ActiveSearch-Page">
+	<!--${contacts}-->
+</template>
+
+<template id="ActiveSearch-Row">
+	<tr>
+		<td>${firstName}</td>
+		<td>${lastName}</td>
+		<td>${email}</td>
+	</tr>
+</template>
+
+</html>

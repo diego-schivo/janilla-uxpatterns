@@ -1,7 +1,9 @@
-.settling img {
-	opacity: 0;
-}
+@import 'base.css';
 
 img {
 	transition: opacity 300ms ease-in;
+}
+
+.settling img {
+	opacity: 0;
 }

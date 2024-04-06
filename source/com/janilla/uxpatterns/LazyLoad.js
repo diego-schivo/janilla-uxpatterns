@@ -27,16 +27,15 @@ class LazyLoad {
 
 	load = async () => {
 		const s = await fetch('/lazy-load/graph');
-		const t = await s.text();
 		const e = this.selector();
-		e.innerHTML = t;
+		e.innerHTML = await s.text();
 		e.classList.add('settling');
 		setTimeout(() => e.classList.remove('settling'), 20);
 	}
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-	const l = new LazyLoad();
-	l.selector = () => document.body.firstElementChild;
-	await l.load();
+	const x = new LazyLoad();
+	x.selector = () => document.querySelector('main');
+	await x.load();
 });

@@ -28,39 +28,37 @@ class ClickToEdit {
 	listen = () => {
 		const e = this.selector();
 		e.querySelector('#edit')?.addEventListener('click', this.handleEditClick);
-		e.matches('form') && e.addEventListener('submit', this.handleFormSubmit);
+		e.querySelector('form')?.addEventListener('submit', this.handleFormSubmit);
 		e.querySelector('#cancel')?.addEventListener('click', this.handleCancelClick);
 	}
 
 	handleEditClick = async () => {
 		const s = await fetch('/click-to-edit/contact/1/edit');
-		const t = await s.text();
-		this.selector().outerHTML = t;
+		this.selector().innerHTML = await s.text();
 		this.listen();
 	}
 
 	handleFormSubmit = async e => {
 		e.preventDefault();
+		const f = e.currentTarget;
 		const s = await fetch('/click-to-edit/contact/1', {
 			method: 'PUT',
-			body: new URLSearchParams(new FormData(e.currentTarget))
+			body: new URLSearchParams(new FormData(f))
 		});
-		const t = await s.text();
-		this.selector().outerHTML = t;
+		this.selector().innerHTML = await s.text();
 		this.listen();
 	}
 
 	handleCancelClick = async e => {
 		e.preventDefault();
 		const s = await fetch('/click-to-edit/contact/1');
-		const t = await s.text();
-		this.selector().outerHTML = t;
+		this.selector().innerHTML = await s.text();
 		this.listen();
 	}
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	const c = new ClickToEdit();
-	c.selector = () => document.body.firstElementChild;
-	c.listen();
+	const x = new ClickToEdit();
+	x.selector = () => document.querySelector('main');
+	x.listen();
 });
