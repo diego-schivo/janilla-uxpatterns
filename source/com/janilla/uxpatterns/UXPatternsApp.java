@@ -83,7 +83,6 @@ public class UXPatternsApp {
 	public App getApp() {
 		return new App(Util.getPackageClasses(getClass().getPackageName()).map(Class::getSimpleName)
 				.filter(x -> x.endsWith("Web")).map(x -> x.substring(0, x.length() - 3)).sorted().map(x -> {
-//					var y = x.split("(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])");
 					var y = Util.splitCamelCase(x);
 					return new Link(
 							URI.create(

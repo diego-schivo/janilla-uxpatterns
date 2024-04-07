@@ -144,7 +144,7 @@ public class ActiveSearchWeb {
 
 	@Handle(method = "POST", path = "/active-search/search")
 	public ResultPage searchContacts(@Parameter(name = "search") String search) throws InterruptedException {
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		var cc = contacts.stream();
 		if (search != null && !search.isBlank())
 			cc = cc.filter(x -> Util.startsWithIgnoreCase(x.getFirstName(), search)

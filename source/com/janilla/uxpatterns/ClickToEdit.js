@@ -45,8 +45,11 @@ class ClickToEdit {
 			method: 'PUT',
 			body: new URLSearchParams(new FormData(f))
 		});
-		this.selector().innerHTML = await s.text();
-		this.listen();
+		if (s.ok) {
+			this.selector().innerHTML = await s.text();
+			this.listen();
+		} else
+			alert(await s.text());
 	}
 
 	handleCancelClick = async e => {
