@@ -47,16 +47,17 @@ public class BulkUpdateWeb {
 	public Toast postUsers(@Parameter(name = "active") Set<String> active) {
 		var m = 0;
 		var n = 0;
-		for (var u : users) {
-			var a = active.contains(u.email);
-			if (!u.active) {
+		for (var i = 0; i < users.size(); i++) {
+			var u = users.get(i);
+			var a = active.contains(u.email());
+			if (!u.active()) {
 				if (a) {
-					u.active = true;
+					users.set(i, new User(u.name(), u.email(), true));
 					m++;
 				}
 			} else {
 				if (!a) {
-					u.active = false;
+					users.set(i, new User(u.name(), u.email(), false));
 					n++;
 				}
 			}
@@ -71,7 +72,7 @@ public class BulkUpdateWeb {
 		public boolean evaluate(RenderEngine engine) {
 			record A(User user, Object checkedAttribute) {
 			}
-			return engine.match(A.class, (i, o) -> o.setValue(i.user.active ? "checked" : ""));
+			return engine.match(A.class, (i, o) -> o.setValue(i.user.active() ? "checked" : ""));
 		}
 	}
 

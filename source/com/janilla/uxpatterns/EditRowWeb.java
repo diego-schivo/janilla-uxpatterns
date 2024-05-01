@@ -32,9 +32,10 @@ import com.janilla.web.Render;
 
 public class EditRowWeb {
 
-	private static List<Contact> contacts = List.of(new Contact(1, "Joe", "Smith", "joe@smith.org"),
-			new Contact(2, "Angie", "MacDowell", "angie@macdowell.org"),
-			new Contact(3, "Fuqua", "Tarkenton", "fuqua@tarkenton.org"), new Contact(4, "Kim", "Yee", "kim@yee.org"));
+	private static List<Contact> contacts = List.of(new Contact(Long.valueOf(1), "Joe", "Smith", "joe@smith.org"),
+			new Contact(Long.valueOf(2), "Angie", "MacDowell", "angie@macdowell.org"),
+			new Contact(Long.valueOf(3), "Fuqua", "Tarkenton", "fuqua@tarkenton.org"),
+			new Contact(Long.valueOf(4), "Kim", "Yee", "kim@yee.org"));
 
 	@Handle(method = "GET", path = "/edit-row")
 	public Page getPage() {
@@ -43,17 +44,17 @@ public class EditRowWeb {
 
 	@Handle(method = "GET", path = "/edit-row/contact/(\\d+)/edit")
 	public @Render(template = "EditRow-Editor.html") Contact editContact(@Parameter(name = "id") long id) {
-		return contacts.stream().filter(x -> x.getId() == id).findFirst().orElseThrow();
+		return contacts.stream().filter(x -> x.id() == id).findFirst().orElseThrow();
 	}
 
 	@Handle(method = "GET", path = "/edit-row/contact/(\\d+)")
 	public @Render(template = "EditRow-Row.html") Contact getContact(@Parameter(name = "id") long id) {
-		return contacts.stream().filter(x -> x.getId() == id).findFirst().orElseThrow();
+		return contacts.stream().filter(x -> x.id() == id).findFirst().orElseThrow();
 	}
 
 	@Handle(method = "PUT", path = "/edit-row/contact/(\\d+)")
 	public @Render(template = "EditRow-Row.html") Contact saveContact(long id, Contact contact) {
-		var c = contacts.stream().filter(x -> x.getId() == id).findFirst().orElseThrow();
+		var c = contacts.stream().filter(x -> x.id() == id).findFirst().orElseThrow();
 		Reflection.copy(contact, c, n -> !n.equals("id"));
 		return c;
 	}

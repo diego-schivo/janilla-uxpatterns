@@ -134,7 +134,7 @@ public class ActiveSearchWeb {
 			Juliet	Bush	consectetuer.euismod@vitaeeratVivamus.co.uk
 			Caryn	Hooper	eu.enim.Etiam@ridiculus.org""".lines().map(l -> {
 		var ss = l.split("\t");
-		return new Contact(1, ss[0], ss[1], ss[2]);
+		return new Contact(Long.valueOf(1), ss[0], ss[1], ss[2]);
 	}).toList();
 
 	@Handle(method = "GET", path = "/active-search")
@@ -147,9 +147,8 @@ public class ActiveSearchWeb {
 		Thread.sleep(500);
 		var cc = contacts.stream();
 		if (search != null && !search.isBlank())
-			cc = cc.filter(x -> Util.startsWithIgnoreCase(x.getFirstName(), search)
-					|| Util.startsWithIgnoreCase(x.getLastName(), search)
-					|| Util.startsWithIgnoreCase(x.getEmail(), search));
+			cc = cc.filter(x -> Util.startsWithIgnoreCase(x.firstName(), search)
+					|| Util.startsWithIgnoreCase(x.lastName(), search) || Util.startsWithIgnoreCase(x.email(), search));
 		return new ResultPage(cc.toList());
 	}
 

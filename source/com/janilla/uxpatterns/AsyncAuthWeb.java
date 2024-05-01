@@ -38,7 +38,7 @@ public class AsyncAuthWeb {
 
 	@Handle(method = "GET", path = "/async-auth/example")
 	public @Render(template = """
-			${}
+			{}
 			""") String example(HttpRequest request) {
 		if (!request.getHeaders().get("AUTH").equals("foo-bar-baz-qux"))
 			throw new RuntimeException();

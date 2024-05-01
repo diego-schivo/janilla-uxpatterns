@@ -34,7 +34,7 @@ import com.janilla.http.Http;
 import com.janilla.http.HttpExchange;
 import com.janilla.uxpatterns.ProgressBarWeb.Job;
 
-abstract class CustomHttpExchange extends HttpExchange {
+public abstract class CustomHttpExchange extends HttpExchange {
 
 	private static Map<UUID, Job> jobs = new ConcurrentHashMap<>();
 
@@ -47,7 +47,7 @@ abstract class CustomHttpExchange extends HttpExchange {
 		var u = s != null ? UUID.fromString(s) : null;
 		var j = u != null ? jobs.get(u) : null;
 		if (j != null) {
-			if (j.getProgress() >= 1.0 && oo.contains(JobGetOption.REMOVE)) {
+			if (j.progress >= 1.0 && oo.contains(JobGetOption.REMOVE)) {
 				jobs.remove(u);
 				getResponse().getHeaders().add("Set-Cookie", Http.formatSetCookieHeader("job", null,
 						ZonedDateTime.of(1970, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC), "/", "strict"));

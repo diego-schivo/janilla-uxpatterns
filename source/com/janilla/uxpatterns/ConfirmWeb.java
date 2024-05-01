@@ -35,7 +35,7 @@ public class ConfirmWeb {
 
 	@Handle(method = "GET", path = "/confirm/confirmed")
 	public @Render(template = """
-			${}
+			{}
 			""") String confirmed() {
 		return "Confirmed";
 	}

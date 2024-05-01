@@ -14,13 +14,13 @@
 			<div>
 				<label>Make</label>
 				<select name="make">
-					<!--${makes}-->
+					<{makes}>
 				</select>
 			</div>
 			<div>
 				<label>Model</label>
 				<select name="model">
-					<!--${models}-->
+					<{models}>
 				</select>
 				<img class="indicator" width="20" src="/images/bars.svg" />
 			</div>
@@ -29,11 +29,11 @@
 </body>
 
 <template id="ValueSelect-OptionList">
-	<!--${entries}-->
+	<{entries}>
 </template>
 
 <template id="ValueSelect-Entry">
-	<option value="${key}">${value}</option>
+	<option value="{key}">{value}</option>
 </template>
 
 </html>

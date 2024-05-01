@@ -11,14 +11,14 @@
 	<main>
 		<h3>Signup Form</h3>
 		<form>
-			<!--${email}-->
+			<{email}>
 			<div>
 				<label>First Name</label>
-				<input type="text" name="firstName" value="${contact.firstName}" />
+				<input type="text" name="firstName" value="{contact.firstName}" />
 			</div>
 			<div>
 				<label>Last Name</label>
-				<input type="text" name="lastName" value="${contact.lastName}" />
+				<input type="text" name="lastName" value="{contact.lastName}" />
 			</div>
 			<button class="button" disabled>Submit</button>
 		</form>
@@ -26,16 +26,16 @@
 </body>
 
 <template id="InlineValidation-Email">
-	<div class="${errorClass}">
+	<div class="{errorClass}">
 		<label>Email Address</label>
-		<input type="email" name="email" value="${contact.email}" />
+		<input type="email" name="email" value="{contact.email}" />
 		<img src="/images/bars.svg" class="indicator" />
-		<!--${error}-->
+		<{error}>
 	</div>
 </template>
 
 <template id="InlineValidation-Error">
-	<div class="error-message">${}</div>
+	<div class="error-message">{}</div>
 </template>
 
 </html>

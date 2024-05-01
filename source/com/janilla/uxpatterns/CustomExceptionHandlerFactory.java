@@ -33,11 +33,7 @@ import com.janilla.web.HandlerFactory;
 
 public class CustomExceptionHandlerFactory extends ExceptionHandlerFactory {
 
-	protected HandlerFactory mainFactory;
-
-	public void setMainFactory(HandlerFactory mainFactory) {
-		this.mainFactory = mainFactory;
-	}
+	public HandlerFactory mainFactory;
 
 	@Override
 	protected void handle(Error error, HttpExchange exchange) throws IOException {

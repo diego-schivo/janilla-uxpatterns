@@ -36,7 +36,7 @@ public class DialogsWeb {
 
 	@Handle(method = "POST", path = "/dialogs/submit")
 	public @Render(template = """
-			User entered <i>${}</i>
+			User entered <i>{}</i>
 			""") String submit(HttpRequest request) {
 		return request.getHeaders().get("Prompt");
 	}

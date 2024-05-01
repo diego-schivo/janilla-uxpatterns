@@ -9,12 +9,12 @@
 </head>
 <body>
 	<main>
-		<div class="color-demo" class="smooth" style="color: ${color}">Color Swap Demo</div>
+		<div class="color-demo" class="smooth" style="color: {color}">Color Swap Demo</div>
 		<div>
 			<button class="fade-me-out">Fade Me Out</button>
 		</div>
 		<div>
-			<!--${fadeIn}-->
+			<{fadeIn}>
 		</div>
 		<div aria-live="polite">
 			<form>
@@ -26,7 +26,7 @@
 		</div>
 		<div class="demo">Toggle Demo</div>
 		<div class="slide-it">
-			<!--${content}-->
+			<{content}>
 		</div>
 	</main>
 </body>
@@ -36,8 +36,8 @@
 </template>
 
 <template id="Animations-Content">
-	<h1>${title}</h1>
-	<button>${text}</button>
+	<h1>{title}</h1>
+	<button>{text}</button>
 </template>
 
 </html>

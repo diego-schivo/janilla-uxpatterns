@@ -19,7 +19,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!--${users}-->
+					<{users}>
 				</tbody>
 			</table>
 			<button>Bulk Update</button>
@@ -30,16 +30,16 @@
 
 <template id="BulkUpdate-Row">
 	<tr>
-		<td>${name}</td>
-		<td>${email}</td>
+		<td>{name}</td>
+		<td>{email}</td>
 		<td>
-			<input type="checkbox" name="active" value="${email}" data-${checkedAttribute} />
+			<input type="checkbox" name="active" value="{email}" data-{checkedAttribute} />
 		</td>
 	</tr>
 </template>
 
 <template id="BulkUpdate-Toast">
-	<span id="toast" aria-live="polite">Activated ${activated} and deactivated ${deactivated} users</span>
+	<span id="toast" aria-live="polite">Activated {activated} and deactivated {deactivated} users</span>
 </template>
 
 </html>

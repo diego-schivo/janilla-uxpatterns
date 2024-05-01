@@ -50,30 +50,22 @@ public class UXPatternsApp {
 			try (var s = a.getClass().getResourceAsStream("configuration.properties")) {
 				c.load(s);
 			}
-			a.setConfiguration(c);
+			a.configuration = c;
 		}
 
 		var s = a.new Server();
-		s.setPort(Integer.parseInt(a.getConfiguration().getProperty("uxpatterns.server.port")));
+		s.setPort(Integer.parseInt(a.configuration.getProperty("uxpatterns.server.port")));
 		s.setHandler(a.getHandler());
 		s.run();
 	}
 
-	Properties configuration;
+	public Properties configuration;
 
 	Supplier<IO.Consumer<HttpExchange>> handler = Lazy.of(() -> {
 		var b = new ApplicationHandlerBuilder();
 		b.setApplication(this);
 		return b.build();
 	});
-
-	public Properties getConfiguration() {
-		return configuration;
-	}
-
-	public void setConfiguration(Properties configuration) {
-		this.configuration = configuration;
-	}
 
 	public IO.Consumer<HttpExchange> getHandler() {
 		return handler.get();

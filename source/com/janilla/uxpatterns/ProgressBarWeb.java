@@ -59,7 +59,7 @@ public class ProgressBarWeb {
 	}
 
 	private static int getPercentage(Job job) {
-		var p = job != null ? job.getProgress() : 0f;
+		var p = job != null ? job.progress : 0f;
 		return (int) Math.round(p * 100);
 	}
 
@@ -71,7 +71,7 @@ public class ProgressBarWeb {
 	public record UI(Job job) {
 
 		public String title() {
-			return job == null ? "Start Progress" : job.getProgress() < 1f ? "Running" : "Complete";
+			return job == null ? "Start Progress" : job.progress < 1f ? "Running" : "Complete";
 		}
 
 		public String titleAttributes() {
@@ -84,17 +84,13 @@ public class ProgressBarWeb {
 		}
 
 		public @Render(template = "ProgressBar-button.html") String button() {
-			return job == null ? "Start Job" : job.getProgress() < 1f ? null : "Restart Job";
+			return job == null ? "Start Job" : job.progress < 1f ? null : "Restart Job";
 		}
 	}
 
 	public static class Job implements Runnable {
 
-		private float progress;
-
-		public float getProgress() {
-			return progress;
-		}
+		public float progress;
 
 		@Override
 		public void run() {

@@ -60,7 +60,7 @@ public class AnimationsWeb {
 
 	@Handle(method = "POST", path = "/animations/name")
 	public @Render(template = """
-			${}
+			{}
 			""") String setName() throws InterruptedException {
 		Thread.sleep(500);
 		return "Submitted!";

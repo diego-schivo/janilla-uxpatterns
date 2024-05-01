@@ -19,7 +19,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<!--${contacts}-->
+				<{contacts}>
 			</tbody>
 		</table>
 	</main>
@@ -27,11 +27,11 @@
 
 <template id="EditRow-Row">
 	<tr>
-		<td>${firstName}</td>
-		<td>${lastName}</td>
-		<td>${email}</td>
+		<td>{firstName}</td>
+		<td>{lastName}</td>
+		<td>{email}</td>
 		<td>
-			<button class="button" name="id" value="${id}">Edit</button>
+			<button class="button" name="id" value="{id}">Edit</button>
 		</td>
 	</tr>
 </template>
@@ -39,17 +39,17 @@
 <template id="EditRow-Editor">
 	<tr class="editing">
 		<td>
-			<input name="firstName" value="${firstName}" />
+			<input name="firstName" value="{firstName}" />
 		</td>
 		<td>
-			<input name="lastName" value="${lastName}" />
+			<input name="lastName" value="{lastName}" />
 		</td>
 		<td>
-			<input name="email" value="${email}" />
+			<input name="email" value="{email}" />
 		</td>
 		<td>
-			<button id="cancel" class="button" name="id" value="${id}">Cancel</button>
-			<button id="save" class="button" name="id" value="${id}">Save</button>
+			<button id="cancel" class="button" name="id" value="{id}">Cancel</button>
+			<button id="save" class="button" name="id" value="{id}">Save</button>
 		</td>
 	</tr>
 </template>

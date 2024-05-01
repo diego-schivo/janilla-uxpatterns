@@ -35,7 +35,7 @@ public class KeyboardShortcutsWeb {
 
 	@Handle(method = "POST", path = "/keyboard-shortcuts/doit")
 	public @Render(template = """
-			${}
+			{}
 			""") String doIt() {
 		return "Did it!";
 	}

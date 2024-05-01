@@ -28,7 +28,7 @@ import com.janilla.web.Render;
 
 public class ClickToEditWeb {
 
-	private static Contact contact = new Contact(1, "Joe", "Blow", "joe@blow.com");
+	private static Contact contact = new Contact(Long.valueOf(1), "Joe", "Blow", "joe@blow.com");
 
 	@Handle(method = "GET", path = "/click-to-edit")
 	public Page getPage() {

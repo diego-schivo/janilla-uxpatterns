@@ -36,7 +36,7 @@ public class InlineValidationWeb {
 	@Handle(method = "POST", path = "/inline-validation/contact/email")
 	public Email validateEmail(Contact contact) throws InterruptedException {
 		Thread.sleep(500);
-		var e = !contact.getEmail().equals("test@test.com") ? "That email is already taken. Please enter another email."
+		var e = !contact.email().equals("test@test.com") ? "That email is already taken. Please enter another email."
 				: null;
 		return new Email(contact, e);
 	}

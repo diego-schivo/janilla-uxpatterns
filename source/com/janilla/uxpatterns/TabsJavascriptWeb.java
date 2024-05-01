@@ -49,7 +49,7 @@ public class TabsJavascriptWeb {
 
 	@Handle(method = "GET", path = "/tabs-javascript/tab([1-3])")
 	public @Render(template = """
-			${}
+			{}
 			""") String getContent(int tab) {
 		return tabs.get(tab - 1).getValue();
 	}
