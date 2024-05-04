@@ -29,12 +29,12 @@ import com.janilla.web.Render;
 public class KeyboardShortcutsWeb {
 
 	@Handle(method = "GET", path = "/keyboard-shortcuts")
-	public @Render(template = "KeyboardShortcuts.html") Object getPage() {
+	public @Render("KeyboardShortcuts.html") Object getPage() {
 		return new Object();
 	}
 
 	@Handle(method = "POST", path = "/keyboard-shortcuts/doit")
-	public @Render(template = """
+	public @Render("""
 			{}
 			""") String doIt() {
 		return "Did it!";

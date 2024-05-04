@@ -55,11 +55,11 @@ public class ClickToLoadWeb {
 	public record Contact(String name, String email, String id) {
 	}
 
-	@Render(template = "ClickToLoad.html")
+	@Render("ClickToLoad.html")
 	public record Page(ResultPage page) {
 	}
 
-	@Render(template = "ClickToLoad-Page.html")
-	public record ResultPage(List<@Render(template = "ClickToLoad-Row.html") Contact> contacts) {
+	@Render("ClickToLoad-Page.html")
+	public record ResultPage(List<@Render("ClickToLoad-Row.html") Contact> contacts) {
 	}
 }

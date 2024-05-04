@@ -35,6 +35,7 @@ import com.janilla.http.HttpExchange;
 import com.janilla.http.HttpRequest;
 import com.janilla.http.HttpServer;
 import com.janilla.io.IO;
+import com.janilla.reflect.Factory;
 import com.janilla.util.Lazy;
 import com.janilla.util.Util;
 import com.janilla.web.ApplicationHandlerBuilder;
@@ -61,11 +62,24 @@ public class UXPatternsApp {
 
 	public Properties configuration;
 
+	private Supplier<Factory> factory = Lazy.of(() -> {
+		var f = new Factory();
+		f.setTypes(Util.getPackageClasses(getClass().getPackageName()).toList());
+		f.setEnclosing(this);
+		return f;
+	});
+
 	Supplier<IO.Consumer<HttpExchange>> handler = Lazy.of(() -> {
-		var b = new ApplicationHandlerBuilder();
-		b.setApplication(this);
+//		var b = new ApplicationHandlerBuilder();
+//		b.setApplication(this);
+		var f = getFactory();
+		var b = f.newInstance(ApplicationHandlerBuilder.class);
 		return b.build();
 	});
+
+	public Factory getFactory() {
+		return factory.get();
+	}
 
 	public IO.Consumer<HttpExchange> getHandler() {
 		return handler.get();
@@ -94,11 +108,11 @@ public class UXPatternsApp {
 	public class Exchange extends CustomHttpExchange {
 	}
 
-	@Render(template = "App.html")
+	@Render("App.html")
 	public record App(List<Link> links) {
 	}
 
-	@Render(template = "App-Link.html")
+	@Render("App-Link.html")
 	public record Link(URI uri, String text) {
 	}
 }

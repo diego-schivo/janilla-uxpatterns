@@ -41,7 +41,7 @@ public class InlineValidationWeb {
 		return new Email(contact, e);
 	}
 
-	@Render(template = "InlineValidation.html")
+	@Render("InlineValidation.html")
 	public record Page(Contact contact) {
 
 		public Email email() {
@@ -49,8 +49,8 @@ public class InlineValidationWeb {
 		}
 	}
 
-	@Render(template = "InlineValidation-Email.html")
-	public record Email(Contact contact, @Render(template = "InlineValidation-Error.html") String error) {
+	@Render("InlineValidation-Email.html")
+	public record Email(Contact contact, @Render("InlineValidation-Error.html") String error) {
 
 		public String errorClass() {
 			return error != null ? "error" : "valid";

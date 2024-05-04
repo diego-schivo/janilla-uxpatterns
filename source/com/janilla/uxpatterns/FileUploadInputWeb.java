@@ -59,11 +59,11 @@ public class FileUploadInputWeb {
 		return new Form();
 	}
 
-	@Render(template = "FileUploadInput.html")
+	@Render("FileUploadInput.html")
 	public record Page(Form form) {
 	}
 
-	@Render(template = "FileUploadInput-Form.html")
+	@Render("FileUploadInput-Form.html")
 	public record Form() {
 	}
 }

@@ -32,12 +32,12 @@ import com.janilla.web.Render;
 public class AsyncAuthWeb {
 
 	@Handle(method = "GET", path = "/async-auth")
-	public @Render(template = "AsyncAuth.html") Object getPage() {
+	public @Render("AsyncAuth.html") Object getPage() {
 		return "page";
 	}
 
 	@Handle(method = "GET", path = "/async-auth/example")
-	public @Render(template = """
+	public @Render("""
 			{}
 			""") String example(HttpRequest request) {
 		if (!request.getHeaders().get("AUTH").equals("foo-bar-baz-qux"))

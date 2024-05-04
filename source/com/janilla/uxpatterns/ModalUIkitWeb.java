@@ -29,12 +29,12 @@ import com.janilla.web.Render;
 public class ModalUIkitWeb {
 
 	@Handle(method = "GET", path = "/modal-uikit")
-	public @Render(template = "ModalUIkit.html") Object getPage() {
+	public @Render("ModalUIkit.html") Object getPage() {
 		return new Object();
 	}
 
 	@Handle(method = "GET", path = "/modal-uikit/modal")
-	public @Render(template = "ModalUIkit-modal.html") Object getModal() {
+	public @Render("ModalUIkit-modal.html") Object getModal() {
 		return new Object();
 	}
 }

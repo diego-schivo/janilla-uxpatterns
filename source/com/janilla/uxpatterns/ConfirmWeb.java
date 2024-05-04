@@ -29,12 +29,12 @@ import com.janilla.web.Render;
 public class ConfirmWeb {
 
 	@Handle(method = "GET", path = "/confirm")
-	public @Render(template = "Confirm.html") Object getPage() {
+	public @Render("Confirm.html") Object getPage() {
 		return "page";
 	}
 
 	@Handle(method = "GET", path = "/confirm/confirmed")
-	public @Render(template = """
+	public @Render("""
 			{}
 			""") String confirmed() {
 		return "Confirmed";

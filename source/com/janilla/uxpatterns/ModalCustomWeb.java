@@ -29,12 +29,12 @@ import com.janilla.web.Render;
 public class ModalCustomWeb {
 
 	@Handle(method = "GET", path = "/modal-custom")
-	public @Render(template = "ModalCustom.html") Object getPage() {
+	public @Render("ModalCustom.html") Object getPage() {
 		return new Object();
 	}
 
 	@Handle(method = "GET", path = "/modal-custom/modal")
-	public @Render(template = "ModalCustom-modal.html") Object getModal() {
+	public @Render("ModalCustom-modal.html") Object getModal() {
 		return new Object();
 	}
 }

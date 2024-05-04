@@ -27,7 +27,7 @@ import com.janilla.web.Error;
 import com.janilla.web.Render;
 
 @Error(code = 403, text = "Forbidden")
-@Render(template = """
+@Render("""
 		{message}
 		""")
 public class MethodBlockedException extends RuntimeException {

@@ -30,7 +30,7 @@ import com.janilla.web.Render;
 public class SortableWeb {
 
 	@Handle(method = "GET", path = "/sortable")
-	public @Render(template = "Sortable.html") Object getPage() {
+	public @Render("Sortable.html") Object getPage() {
 		return new Object();
 	}
 

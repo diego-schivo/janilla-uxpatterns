@@ -54,11 +54,11 @@ public class ValueSelectWeb {
 		return new OptionList(models.get(make));
 	}
 
-	@Render(template = "ValueSelect.html")
+	@Render("ValueSelect.html")
 	public record Page(OptionList makes, OptionList models) {
 	}
 
-	@Render(template = "ValueSelect-OptionList.html")
-	public record OptionList(List<@Render(template = "ValueSelect-Entry.html") Entry<String, String>> entries) {
+	@Render("ValueSelect-OptionList.html")
+	public record OptionList(List<@Render("ValueSelect-Entry.html") Entry<String, String>> entries) {
 	}
 }

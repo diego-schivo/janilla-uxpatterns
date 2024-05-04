@@ -58,7 +58,7 @@ public class FileUploadWeb {
 		System.out.println(l);
 	}
 
-	@Render(template = "FileUpload.html")
+	@Render("FileUpload.html")
 	public record Page() {
 	}
 }

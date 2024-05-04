@@ -35,13 +35,13 @@ public class DialogsWeb {
 	}
 
 	@Handle(method = "POST", path = "/dialogs/submit")
-	public @Render(template = """
+	public @Render("""
 			User entered <i>{}</i>
 			""") String submit(HttpRequest request) {
 		return request.getHeaders().get("Prompt");
 	}
 
-	@Render(template = "Dialogs.html")
+	@Render("Dialogs.html")
 	public record Page() {
 	}
 }

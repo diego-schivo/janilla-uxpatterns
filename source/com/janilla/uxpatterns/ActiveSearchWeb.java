@@ -138,7 +138,7 @@ public class ActiveSearchWeb {
 	}).toList();
 
 	@Handle(method = "GET", path = "/active-search")
-	public @Render(template = "ActiveSearch.html") Object getPage() {
+	public @Render("ActiveSearch.html") Object getPage() {
 		return "page";
 	}
 
@@ -152,7 +152,7 @@ public class ActiveSearchWeb {
 		return new ResultPage(cc.toList());
 	}
 
-	@Render(template = "ActiveSearch-Page.html")
-	public record ResultPage(List<@Render(template = "ActiveSearch-Row.html") Contact> contacts) {
+	@Render("ActiveSearch-Page.html")
+	public record ResultPage(List<@Render("ActiveSearch-Row.html") Contact> contacts) {
 	}
 }

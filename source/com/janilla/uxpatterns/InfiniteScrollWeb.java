@@ -60,11 +60,11 @@ public class InfiniteScrollWeb {
 	public record Contact(String name, String email, String id) {
 	}
 
-	@Render(template = "InfiniteScroll.html")
+	@Render("InfiniteScroll.html")
 	public record Page(ResultPage page) {
 	}
 
-	@Render(template = "InfiniteScroll-Page.html")
-	public record ResultPage(List<@Render(template = "InfiniteScroll-Row.html") Contact> contacts) {
+	@Render("InfiniteScroll-Page.html")
+	public record ResultPage(List<@Render("InfiniteScroll-Row.html") Contact> contacts) {
 	}
 }

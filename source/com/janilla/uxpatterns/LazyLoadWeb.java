@@ -29,12 +29,12 @@ import com.janilla.web.Render;
 public class LazyLoadWeb {
 
 	@Handle(method = "GET", path = "/lazy-load")
-	public @Render(template = "LazyLoad.html") Object getPage() {
+	public @Render("LazyLoad.html") Object getPage() {
 		return "page";
 	}
 
 	@Handle(method = "GET", path = "/lazy-load/graph")
-	public @Render(template = "LazyLoad-Graph.html") Object getGraph() throws InterruptedException {
+	public @Render("LazyLoad-Graph.html") Object getGraph() throws InterruptedException {
 		Thread.sleep(2000);
 		return "graph";
 	}

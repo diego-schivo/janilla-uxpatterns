@@ -29,12 +29,12 @@ import com.janilla.web.Render;
 public class ModalBootstrapWeb {
 
 	@Handle(method = "GET", path = "/modal-bootstrap")
-	public @Render(template = "ModalBootstrap.html") Object getPage() {
+	public @Render("ModalBootstrap.html") Object getPage() {
 		return new Object();
 	}
 
 	@Handle(method = "GET", path = "/modal-bootstrap/modal")
-	public @Render(template = "ModalBootstrap-modal.html") Object getModal() {
+	public @Render("ModalBootstrap-modal.html") Object getModal() {
 		return new Object();
 	}
 }

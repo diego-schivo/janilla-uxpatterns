@@ -59,22 +59,22 @@ public class AnimationsWeb {
 	}
 
 	@Handle(method = "POST", path = "/animations/name")
-	public @Render(template = """
+	public @Render("""
 			{}
 			""") String setName() throws InterruptedException {
 		Thread.sleep(500);
 		return "Submitted!";
 	}
 
-	@Render(template = "Animations.html")
+	@Render("Animations.html")
 	public record Page(String color, FadeIn fadeIn, Content content) {
 	}
 
-	@Render(template = "Animations-FadeIn.html")
+	@Render("Animations-FadeIn.html")
 	public record FadeIn() {
 	}
 
-	@Render(template = "Animations-Content.html")
+	@Render("Animations-Content.html")
 	public record Content(String title, String text) {
 	}
 }

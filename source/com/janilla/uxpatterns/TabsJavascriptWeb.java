@@ -43,21 +43,21 @@ public class TabsJavascriptWeb {
 					"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."));
 
 	@Handle(method = "GET", path = "/tabs-javascript")
-	public @Render(template = "TabsJavascript.html") Object getPage() {
+	public @Render("TabsJavascript.html") Object getPage() {
 		return new Object();
 	}
 
 	@Handle(method = "GET", path = "/tabs-javascript/tab([1-3])")
-	public @Render(template = """
+	public @Render("""
 			{}
 			""") String getContent(int tab) {
 		return tabs.get(tab - 1).getValue();
 	}
 
-	@Render(template = "TabsJavascript-Tabs.html")
+	@Render("TabsJavascript-Tabs.html")
 	public record Tabs(int tab) implements Renderer {
 
-		public List<@Render(template = "TabsJavascript-Tab.html") String> tabs() {
+		public List<@Render("TabsJavascript-Tab.html") String> tabs() {
 			return tabs.stream().map(Entry::getKey).toList();
 		}
 

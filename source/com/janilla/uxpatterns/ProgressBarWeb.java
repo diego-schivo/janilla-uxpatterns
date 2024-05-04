@@ -63,11 +63,11 @@ public class ProgressBarWeb {
 		return (int) Math.round(p * 100);
 	}
 
-	@Render(template = "ProgressBar.html")
+	@Render("ProgressBar.html")
 	public record Page(UI ui) {
 	}
 
-	@Render(template = "ProgressBar-UI.html")
+	@Render("ProgressBar-UI.html")
 	public record UI(Job job) {
 
 		public String title() {
@@ -79,11 +79,11 @@ public class ProgressBarWeb {
 					role="status" id="pblabel" tabindex="-1" autofocus""";
 		}
 
-		public @Render(template = "ProgressBar-bar.html") Integer bar() {
+		public @Render("ProgressBar-bar.html") Integer bar() {
 			return job == null ? null : getPercentage(job);
 		}
 
-		public @Render(template = "ProgressBar-button.html") String button() {
+		public @Render("ProgressBar-button.html") String button() {
 			return job == null ? "Start Job" : job.progress < 1f ? null : "Restart Job";
 		}
 	}

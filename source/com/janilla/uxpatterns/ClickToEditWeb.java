@@ -36,22 +36,22 @@ public class ClickToEditWeb {
 	}
 
 	@Handle(method = "GET", path = "/click-to-edit/contact/(\\d+)")
-	public @Render(template = "ClickToEdit-Details.html") Contact getContact(long id) {
+	public @Render("ClickToEdit-Details.html") Contact getContact(long id) {
 		return contact;
 	}
 
 	@Handle(method = "GET", path = "/click-to-edit/contact/(\\d+)/edit")
-	public @Render(template = "ClickToEdit-Form.html") Contact editContact(long id) {
+	public @Render("ClickToEdit-Form.html") Contact editContact(long id) {
 		return contact;
 	}
 
 	@Handle(method = "PUT", path = "/click-to-edit/contact/(\\d+)")
-	public @Render(template = "ClickToEdit-Details.html") Contact putContact(Contact contact) {
+	public @Render("ClickToEdit-Details.html") Contact putContact(Contact contact) {
 		ClickToEditWeb.contact = contact;
 		return contact;
 	}
 
-	@Render(template = "ClickToEdit.html")
-	public record Page(@Render(template = "ClickToEdit-Details.html") Contact contact) {
+	@Render("ClickToEdit.html")
+	public record Page(@Render("ClickToEdit-Details.html") Contact contact) {
 	}
 }

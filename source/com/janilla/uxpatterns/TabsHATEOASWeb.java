@@ -43,7 +43,7 @@ public class TabsHATEOASWeb {
 					"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."));
 
 	@Handle(method = "GET", path = "/tabs-hateoas")
-	public @Render(template = "TabsHATEOAS.html") Object getPage() {
+	public @Render("TabsHATEOAS.html") Object getPage() {
 		return new Object();
 	}
 
@@ -52,10 +52,10 @@ public class TabsHATEOASWeb {
 		return new Tabs(tab);
 	}
 
-	@Render(template = "TabsHATEOAS-Tabs.html")
+	@Render("TabsHATEOAS-Tabs.html")
 	public record Tabs(int tab) implements Renderer {
 
-		public List<@Render(template = "TabsHATEOAS-Tab.html") String> tabs() {
+		public List<@Render("TabsHATEOAS-Tab.html") String> tabs() {
 			return tabs.stream().map(Entry::getKey).toList();
 		}
 

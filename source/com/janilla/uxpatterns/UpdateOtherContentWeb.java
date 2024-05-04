@@ -41,12 +41,12 @@ public class UpdateOtherContentWeb {
 	public record Contact(String name, String email) {
 	}
 
-	@Render(template = "UpdateOtherContent.html")
-	public record Page(@Render(template = "UpdateOtherContent-form.html") Object form) {
+	@Render("UpdateOtherContent.html")
+	public record Page(@Render("UpdateOtherContent-form.html") Object form) {
 	}
 
-	@Render(template = "UpdateOtherContent-Add.html")
-	public record Add(@Render(template = "UpdateOtherContent-row.html") Contact row,
-			@Render(template = "UpdateOtherContent-form.html") Object form) {
+	@Render("UpdateOtherContent-Add.html")
+	public record Add(@Render("UpdateOtherContent-row.html") Contact row,
+			@Render("UpdateOtherContent-form.html") Object form) {
 	}
 }

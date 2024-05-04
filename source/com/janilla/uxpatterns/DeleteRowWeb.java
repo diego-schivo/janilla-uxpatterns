@@ -54,8 +54,8 @@ public class DeleteRowWeb {
 	public record Contact(long id, String name, String email, boolean active) {
 	}
 
-	@Render(template = "DeleteRow.html")
-	public record Page(List<@Render(template = "DeleteRow-Row.html") Contact> contacts) implements Renderer {
+	@Render("DeleteRow.html")
+	public record Page(List<@Render("DeleteRow-Row.html") Contact> contacts) implements Renderer {
 
 		@Override
 		public boolean evaluate(RenderEngine engine) {

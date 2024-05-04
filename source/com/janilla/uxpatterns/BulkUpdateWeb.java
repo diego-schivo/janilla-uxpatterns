@@ -65,8 +65,8 @@ public class BulkUpdateWeb {
 		return new Toast(m, n);
 	}
 
-	@Render(template = "BulkUpdate.html")
-	public record Page(List<@Render(template = "BulkUpdate-Row.html") User> users) implements Renderer {
+	@Render("BulkUpdate.html")
+	public record Page(List<@Render("BulkUpdate-Row.html") User> users) implements Renderer {
 
 		@Override
 		public boolean evaluate(RenderEngine engine) {
@@ -76,7 +76,7 @@ public class BulkUpdateWeb {
 		}
 	}
 
-	@Render(template = "BulkUpdate-Toast.html")
+	@Render("BulkUpdate-Toast.html")
 	public record Toast(int activated, int deactivated) {
 	}
 }
