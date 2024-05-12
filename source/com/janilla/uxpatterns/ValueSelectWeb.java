@@ -49,7 +49,7 @@ public class ValueSelectWeb {
 	}
 
 	@Handle(method = "GET", path = "/value-select/models")
-	public OptionList getModels(@Parameter(name = "make") String make) throws InterruptedException {
+	public OptionList getModels(@Parameter("make") String make) throws InterruptedException {
 		Thread.sleep(500);
 		return new OptionList(models.get(make));
 	}

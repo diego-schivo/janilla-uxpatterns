@@ -35,7 +35,7 @@ public class SortableWeb {
 	}
 
 	@Handle(method = "POST", path = "/sortable/items")
-	public void items(@Parameter(name = "item") int[] items) {
+	public void items(@Parameter("item") int[] items) {
 //		System.out.println(Arrays.toString(items));
 	}
 }

@@ -47,7 +47,7 @@ public class DeleteRowWeb {
 	}
 
 	@Handle(method = "DELETE", path = "/delete-row/contact/(\\d+)")
-	public void deleteContact(@Parameter(name = "id") long id) {
+	public void deleteContact(@Parameter("id") long id) {
 		contacts.removeIf(x -> x.id == id);
 	}
 

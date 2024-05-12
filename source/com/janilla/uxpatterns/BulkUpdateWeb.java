@@ -44,7 +44,7 @@ public class BulkUpdateWeb {
 	}
 
 	@Handle(method = "POST", path = "/bulk-update/users")
-	public Toast postUsers(@Parameter(name = "active") Set<String> active) {
+	public Toast postUsers(@Parameter("active") Set<String> active) {
 		var m = 0;
 		var n = 0;
 		for (var i = 0; i < users.size(); i++) {

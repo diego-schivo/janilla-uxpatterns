@@ -40,7 +40,7 @@ public class ClickToLoadWeb {
 	}
 
 	@Handle(method = "GET", path = "/click-to-load/contacts")
-	public ResultPage getResultPage(@Parameter(name = "page") int page) {
+	public ResultPage getResultPage(@Parameter("page") int page) {
 		var s = Math.max(page - 1, 0) * 10;
 		return new ResultPage(IntStream.range(s, s + 10).mapToObj(i -> {
 			var n = "Agent Smith";

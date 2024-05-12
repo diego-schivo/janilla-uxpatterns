@@ -40,7 +40,7 @@ public class InfiniteScrollWeb {
 	}
 
 	@Handle(method = "GET", path = "/infinite-scroll/contacts")
-	public ResultPage getResultPage(@Parameter(name = "page") int page) throws InterruptedException {
+	public ResultPage getResultPage(@Parameter("page") int page) throws InterruptedException {
 		Thread.sleep(1000);
 		return getResultPage2(page);
 	}

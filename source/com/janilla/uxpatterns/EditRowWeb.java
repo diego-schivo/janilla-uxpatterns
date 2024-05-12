@@ -43,12 +43,12 @@ public class EditRowWeb {
 	}
 
 	@Handle(method = "GET", path = "/edit-row/contact/(\\d+)/edit")
-	public @Render("EditRow-Editor.html") Contact editContact(@Parameter(name = "id") long id) {
+	public @Render("EditRow-Editor.html") Contact editContact(@Parameter("id") long id) {
 		return contacts.stream().filter(x -> x.id() == id).findFirst().orElseThrow();
 	}
 
 	@Handle(method = "GET", path = "/edit-row/contact/(\\d+)")
-	public @Render("EditRow-Row.html") Contact getContact(@Parameter(name = "id") long id) {
+	public @Render("EditRow-Row.html") Contact getContact(@Parameter("id") long id) {
 		return contacts.stream().filter(x -> x.id() == id).findFirst().orElseThrow();
 	}
 
