@@ -28,8 +28,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import com.janilla.reflect.Parameter;
 import com.janilla.web.Handle;
+import com.janilla.web.Bind;
 import com.janilla.web.Render;
 
 public class InfiniteScrollWeb {
@@ -40,7 +40,7 @@ public class InfiniteScrollWeb {
 	}
 
 	@Handle(method = "GET", path = "/infinite-scroll/contacts")
-	public ResultPage getResultPage(@Parameter("page") int page) throws InterruptedException {
+	public ResultPage getResultPage(@Bind("page") int page) throws InterruptedException {
 		Thread.sleep(1000);
 		return getResultPage2(page);
 	}

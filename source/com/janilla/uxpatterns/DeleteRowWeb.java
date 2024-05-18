@@ -30,8 +30,8 @@ import java.util.stream.Stream;
 
 import com.janilla.frontend.RenderEngine;
 import com.janilla.frontend.Renderer;
-import com.janilla.reflect.Parameter;
 import com.janilla.web.Handle;
+import com.janilla.web.Bind;
 import com.janilla.web.Render;
 
 public class DeleteRowWeb {
@@ -47,7 +47,7 @@ public class DeleteRowWeb {
 	}
 
 	@Handle(method = "DELETE", path = "/delete-row/contact/(\\d+)")
-	public void deleteContact(@Parameter("id") long id) {
+	public void deleteContact(@Bind("id") long id) {
 		contacts.removeIf(x -> x.id == id);
 	}
 

@@ -29,8 +29,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.janilla.reflect.Parameter;
 import com.janilla.web.Handle;
+import com.janilla.web.Bind;
 import com.janilla.web.Render;
 
 public class ValueSelectWeb {
@@ -49,7 +49,7 @@ public class ValueSelectWeb {
 	}
 
 	@Handle(method = "GET", path = "/value-select/models")
-	public OptionList getModels(@Parameter("make") String make) throws InterruptedException {
+	public OptionList getModels(@Bind("make") String make) throws InterruptedException {
 		Thread.sleep(500);
 		return new OptionList(models.get(make));
 	}

@@ -23,8 +23,8 @@
  */
 package com.janilla.uxpatterns;
 
-import com.janilla.reflect.Parameter;
 import com.janilla.web.Handle;
+import com.janilla.web.Bind;
 import com.janilla.web.Render;
 
 public class SortableWeb {
@@ -35,7 +35,7 @@ public class SortableWeb {
 	}
 
 	@Handle(method = "POST", path = "/sortable/items")
-	public void items(@Parameter("item") int[] items) {
+	public void items(@Bind("item") int[] items) {
 //		System.out.println(Arrays.toString(items));
 	}
 }

@@ -25,9 +25,9 @@ package com.janilla.uxpatterns;
 
 import java.util.List;
 
-import com.janilla.reflect.Parameter;
 import com.janilla.util.Util;
 import com.janilla.web.Handle;
+import com.janilla.web.Bind;
 import com.janilla.web.Render;
 
 public class ActiveSearchWeb {
@@ -143,7 +143,7 @@ public class ActiveSearchWeb {
 	}
 
 	@Handle(method = "POST", path = "/active-search/search")
-	public ResultPage searchContacts(@Parameter("search") String search) throws InterruptedException {
+	public ResultPage searchContacts(@Bind("search") String search) throws InterruptedException {
 		Thread.sleep(500);
 		var cc = contacts.stream();
 		if (search != null && !search.isBlank())

@@ -25,9 +25,9 @@ package com.janilla.uxpatterns;
 
 import java.util.List;
 
-import com.janilla.reflect.Parameter;
 import com.janilla.reflect.Reflection;
 import com.janilla.web.Handle;
+import com.janilla.web.Bind;
 import com.janilla.web.Render;
 
 public class EditRowWeb {
@@ -43,12 +43,12 @@ public class EditRowWeb {
 	}
 
 	@Handle(method = "GET", path = "/edit-row/contact/(\\d+)/edit")
-	public @Render("EditRow-Editor.html") Contact editContact(@Parameter("id") long id) {
+	public @Render("EditRow-Editor.html") Contact editContact(@Bind("id") long id) {
 		return contacts.stream().filter(x -> x.id() == id).findFirst().orElseThrow();
 	}
 
 	@Handle(method = "GET", path = "/edit-row/contact/(\\d+)")
-	public @Render("EditRow-Row.html") Contact getContact(@Parameter("id") long id) {
+	public @Render("EditRow-Row.html") Contact getContact(@Bind("id") long id) {
 		return contacts.stream().filter(x -> x.id() == id).findFirst().orElseThrow();
 	}
 

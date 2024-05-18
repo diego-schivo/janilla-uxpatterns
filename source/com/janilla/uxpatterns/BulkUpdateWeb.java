@@ -28,8 +28,8 @@ import java.util.Set;
 
 import com.janilla.frontend.RenderEngine;
 import com.janilla.frontend.Renderer;
-import com.janilla.reflect.Parameter;
 import com.janilla.web.Handle;
+import com.janilla.web.Bind;
 import com.janilla.web.Render;
 
 public class BulkUpdateWeb {
@@ -44,7 +44,7 @@ public class BulkUpdateWeb {
 	}
 
 	@Handle(method = "POST", path = "/bulk-update/users")
-	public Toast postUsers(@Parameter("active") Set<String> active) {
+	public Toast postUsers(@Bind("active") Set<String> active) {
 		var m = 0;
 		var n = 0;
 		for (var i = 0; i < users.size(); i++) {

@@ -28,8 +28,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import com.janilla.reflect.Parameter;
 import com.janilla.web.Handle;
+import com.janilla.web.Bind;
 import com.janilla.web.Render;
 
 public class ClickToLoadWeb {
@@ -40,7 +40,7 @@ public class ClickToLoadWeb {
 	}
 
 	@Handle(method = "GET", path = "/click-to-load/contacts")
-	public ResultPage getResultPage(@Parameter("page") int page) {
+	public ResultPage getResultPage(@Bind("page") int page) {
 		var s = Math.max(page - 1, 0) * 10;
 		return new ResultPage(IntStream.range(s, s + 10).mapToObj(i -> {
 			var n = "Agent Smith";

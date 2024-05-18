@@ -100,7 +100,7 @@ public class UXPatternsApp {
 	class Server extends HttpServer {
 
 		@Override
-		protected HttpExchange newExchange(HttpRequest request) {
+		protected HttpExchange createExchange(HttpRequest request) {
 			return new Exchange();
 		}
 	}
