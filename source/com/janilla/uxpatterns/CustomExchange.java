@@ -34,7 +34,7 @@ import com.janilla.http.Http;
 import com.janilla.http.HttpExchange;
 import com.janilla.uxpatterns.ProgressBarWeb.Job;
 
-public abstract class CustomHttpExchange extends HttpExchange {
+public class CustomExchange extends HttpExchange {
 
 	private static Map<UUID, Job> jobs = new ConcurrentHashMap<>();
 

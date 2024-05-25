@@ -23,37 +23,36 @@
  */
 package com.janilla.uxpatterns;
 
-import static com.janilla.uxpatterns.CustomHttpExchange.JobGetOption.CREATE;
-import static com.janilla.uxpatterns.CustomHttpExchange.JobGetOption.REMOVE;
+import static com.janilla.uxpatterns.CustomExchange.JobGetOption.CREATE;
+import static com.janilla.uxpatterns.CustomExchange.JobGetOption.REMOVE;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import com.janilla.uxpatterns.UXPatternsApp.Exchange;
 import com.janilla.web.Handle;
 import com.janilla.web.Render;
 
 public class ProgressBarWeb {
 
 	@Handle(method = "GET", path = "/progress-bar")
-	public Page getPage(Exchange exchange) {
+	public Page getPage(CustomExchange exchange) {
 		return new Page(getUI(exchange));
 	}
 
 	@Handle(method = "GET", path = "/progress-bar/job")
-	public UI getUI(Exchange exchange) {
+	public UI getUI(CustomExchange exchange) {
 		var j = exchange.getJob(REMOVE);
 		return new UI(j);
 	}
 
 	@Handle(method = "POST", path = "/progress-bar/start")
-	public UI startJob(Exchange exchange) {
+	public UI startJob(CustomExchange exchange) {
 		var j = exchange.getJob(CREATE);
 		Thread.ofVirtual().start(j);
 		return new UI(j);
 	}
 
 	@Handle(method = "GET", path = "/progress-bar/job/progress")
-	public int getProgress(Exchange exchange) {
+	public int getProgress(CustomExchange exchange) {
 		var j = exchange.getJob();
 		return getPercentage(j);
 	}

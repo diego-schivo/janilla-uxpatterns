@@ -23,23 +23,21 @@
  */
 package com.janilla.uxpatterns;
 
-import com.janilla.frontend.RenderEngine;
 import com.janilla.http.HttpExchange;
-import com.janilla.web.Error;
-import com.janilla.web.ExceptionHandlerFactory;
-import com.janilla.web.WebHandlerFactory;
+import com.janilla.http.HttpRequest;
+import com.janilla.http.HttpResponse;
+import com.janilla.http.HttpServer;
+import com.janilla.reflect.Factory;
 
-public class CustomExceptionHandlerFactory extends ExceptionHandlerFactory {
+public class CustomServer extends HttpServer {
 
-	public WebHandlerFactory mainFactory;
+	public Factory factory;
 
 	@Override
-	protected void handle(Error error, HttpExchange exchange) {
-		super.handle(error, exchange);
-
-		if (exchange.getException() instanceof MethodBlockedException e) {
-			var o = RenderEngine.Entry.of(null, e, null);
-			mainFactory.createHandler(o, exchange).handle(exchange);
-		}
+	protected HttpExchange buildExchange(HttpRequest request, HttpResponse response) {
+		var e = factory.create(HttpExchange.class);
+		e.setRequest(request);
+		e.setResponse(response);
+		return e;
 	}
 }

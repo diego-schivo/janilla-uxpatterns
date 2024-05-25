@@ -23,7 +23,6 @@
  */
 package com.janilla.uxpatterns;
 
-import java.io.IOException;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
@@ -31,20 +30,18 @@ import java.util.Properties;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import com.janilla.http.HttpExchange;
-import com.janilla.http.HttpRequest;
 import com.janilla.http.HttpServer;
-import com.janilla.io.IO;
 import com.janilla.reflect.Factory;
 import com.janilla.util.Lazy;
 import com.janilla.util.Util;
 import com.janilla.web.ApplicationHandlerBuilder;
 import com.janilla.web.Handle;
 import com.janilla.web.Render;
+import com.janilla.web.WebHandler;
 
 public class UXPatternsApp {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		var a = new UXPatternsApp();
 		{
 			var c = new Properties();
@@ -54,7 +51,7 @@ public class UXPatternsApp {
 			a.configuration = c;
 		}
 
-		var s = a.new Server();
+		var s = a.getFactory().create(HttpServer.class);
 		s.setPort(Integer.parseInt(a.configuration.getProperty("uxpatterns.server.port")));
 		s.setHandler(a.getHandler());
 		s.run();
@@ -65,23 +62,24 @@ public class UXPatternsApp {
 	private Supplier<Factory> factory = Lazy.of(() -> {
 		var f = new Factory();
 		f.setTypes(Util.getPackageClasses(getClass().getPackageName()).toList());
-		f.setEnclosing(this);
+		f.setSource(this);
 		return f;
 	});
 
-	Supplier<IO.Consumer<HttpExchange>> handler = Lazy.of(() -> {
-//		var b = new ApplicationHandlerBuilder();
-//		b.setApplication(this);
-		var f = getFactory();
-		var b = f.newInstance(ApplicationHandlerBuilder.class);
+	Supplier<WebHandler> handler = Lazy.of(() -> {
+		var b = getFactory().create(ApplicationHandlerBuilder.class);
 		return b.build();
 	});
+
+	public UXPatternsApp getApplication() {
+		return this;
+	}
 
 	public Factory getFactory() {
 		return factory.get();
 	}
 
-	public IO.Consumer<HttpExchange> getHandler() {
+	public WebHandler getHandler() {
 		return handler.get();
 	}
 
@@ -95,17 +93,6 @@ public class UXPatternsApp {
 									"/" + Arrays.stream(y).map(String::toLowerCase).collect(Collectors.joining("-"))),
 							Arrays.stream(y).collect(Collectors.joining(" ")));
 				}).toList());
-	}
-
-	class Server extends HttpServer {
-
-		@Override
-		protected HttpExchange createExchange(HttpRequest request) {
-			return new Exchange();
-		}
-	}
-
-	public class Exchange extends CustomHttpExchange {
 	}
 
 	@Render("App.html")

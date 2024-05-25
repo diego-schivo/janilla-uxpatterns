@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.janilla.frontend.RenderEngine;
-import com.janilla.frontend.Renderer;
+import com.janilla.frontend.RenderParticipant;
 import com.janilla.web.Handle;
 import com.janilla.web.Bind;
 import com.janilla.web.Render;
@@ -66,10 +66,10 @@ public class BulkUpdateWeb {
 	}
 
 	@Render("BulkUpdate.html")
-	public record Page(List<@Render("BulkUpdate-Row.html") User> users) implements Renderer {
+	public record Page(List<@Render("BulkUpdate-Row.html") User> users) implements RenderParticipant {
 
 		@Override
-		public boolean evaluate(RenderEngine engine) {
+		public boolean render(RenderEngine engine) {
 			record A(User user, Object checkedAttribute) {
 			}
 			return engine.match(A.class, (i, o) -> o.setValue(i.user.active() ? "checked" : ""));

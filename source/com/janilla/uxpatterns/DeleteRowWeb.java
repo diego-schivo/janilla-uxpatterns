@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.janilla.frontend.RenderEngine;
-import com.janilla.frontend.Renderer;
+import com.janilla.frontend.RenderParticipant;
 import com.janilla.web.Handle;
 import com.janilla.web.Bind;
 import com.janilla.web.Render;
@@ -55,10 +55,10 @@ public class DeleteRowWeb {
 	}
 
 	@Render("DeleteRow.html")
-	public record Page(List<@Render("DeleteRow-Row.html") Contact> contacts) implements Renderer {
+	public record Page(List<@Render("DeleteRow-Row.html") Contact> contacts) implements RenderParticipant {
 
 		@Override
-		public boolean evaluate(RenderEngine engine) {
+		public boolean render(RenderEngine engine) {
 			record A(Contact contact, Object status) {
 			}
 			return engine.match(A.class, (i, o) -> o.setValue(i.contact.active ? "Active" : "Inactive"));

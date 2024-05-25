@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import com.janilla.frontend.RenderEngine;
-import com.janilla.frontend.Renderer;
+import com.janilla.frontend.RenderParticipant;
 import com.janilla.web.Handle;
 import com.janilla.web.Render;
 
@@ -53,7 +53,7 @@ public class TabsHATEOASWeb {
 	}
 
 	@Render("TabsHATEOAS-Tabs.html")
-	public record Tabs(int tab) implements Renderer {
+	public record Tabs(int tab) implements RenderParticipant {
 
 		public List<@Render("TabsHATEOAS-Tab.html") String> tabs() {
 			return tabs.stream().map(Entry::getKey).toList();
@@ -64,7 +64,7 @@ public class TabsHATEOASWeb {
 		}
 
 		@Override
-		public boolean evaluate(RenderEngine engine) {
+		public boolean render(RenderEngine engine) {
 			record A(String[] tabs, int index, Object selectedClass) {
 			}
 			return engine.match(A.class, (i, o) -> o.setValue(i.index + 1 == tab ? "selected" : null));
