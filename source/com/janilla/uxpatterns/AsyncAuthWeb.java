@@ -40,7 +40,8 @@ public class AsyncAuthWeb {
 	public @Render("""
 			{}
 			""") String example(HttpRequest request) {
-		if (!request.getHeaders().get("AUTH").equals("foo-bar-baz-qux"))
+		if (request.getHeaders().stream()
+				.noneMatch(x -> x.name().equals("AUTH") && x.value().equals("foo-bar-baz-qux")))
 			throw new RuntimeException();
 		return LocalDateTime.now().toString();
 	}

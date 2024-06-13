@@ -41,11 +41,11 @@ public class CustomMethodHandlerFactory extends MethodHandlerFactory {
 			case "GET":
 				break;
 			default:
-				switch (q.getURI().getPath()) {
+				switch (q.getUri().getPath()) {
 				case "/active-search/search", "/bulk-update/users":
 					break;
 				default:
-					if (!q.getURI().getPath().startsWith("/animations/"))
+					if (!q.getUri().getPath().startsWith("/animations/"))
 						throw new HandleException(new MethodBlockedException());
 				}
 			}

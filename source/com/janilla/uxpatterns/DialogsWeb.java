@@ -23,6 +23,7 @@
  */
 package com.janilla.uxpatterns;
 
+import com.janilla.http.HttpHeader;
 import com.janilla.http.HttpRequest;
 import com.janilla.web.Handle;
 import com.janilla.web.Render;
@@ -38,7 +39,8 @@ public class DialogsWeb {
 	public @Render("""
 			User entered <i>{}</i>
 			""") String submit(HttpRequest request) {
-		return request.getHeaders().get("Prompt");
+		return request.getHeaders().stream().filter(x -> x.name().equals("Prompt")).map(HttpHeader::value).findFirst()
+				.orElse(null);
 	}
 
 	@Render("Dialogs.html")

@@ -32,6 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.janilla.http.Http;
 import com.janilla.http.HttpExchange;
+import com.janilla.http.HttpHeader;
 import com.janilla.uxpatterns.ProgressBarWeb.Job;
 
 public class CustomExchange extends HttpExchange {
@@ -41,7 +42,9 @@ public class CustomExchange extends HttpExchange {
 	public Job getJob(JobGetOption... options) {
 		var oo = Set.of(options);
 		var hh = getRequest().getHeaders();
-		var h = hh != null ? hh.get("Cookie") : null;
+		var h = hh != null
+				? hh.stream().filter(x -> x.name().equals("Cookie")).map(HttpHeader::value).findFirst().orElse(null)
+				: null;
 		var cc = h != null ? Http.parseCookieHeader(h) : null;
 		var s = cc != null ? cc.get("job") : null;
 		var u = s != null ? UUID.fromString(s) : null;
@@ -49,15 +52,15 @@ public class CustomExchange extends HttpExchange {
 		if (j != null) {
 			if (j.progress >= 1.0 && oo.contains(JobGetOption.REMOVE)) {
 				jobs.remove(u);
-				getResponse().getHeaders().add("Set-Cookie", Http.formatSetCookieHeader("job", null,
-						ZonedDateTime.of(1970, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC), "/", "strict"));
+				getResponse().getHeaders().add(new HttpHeader("Set-Cookie", Http.formatSetCookieHeader("job", null,
+						ZonedDateTime.of(1970, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC), "/", "strict")));
 			}
 		} else if (oo.contains(JobGetOption.CREATE)) {
 			u = UUID.randomUUID();
 			j = new Job();
 			jobs.put(u, j);
-			getResponse().getHeaders().add("Set-Cookie",
-					Http.formatSetCookieHeader("job", u.toString(), null, "/", "strict"));
+			getResponse().getHeaders().add(
+					new HttpHeader("Set-Cookie", Http.formatSetCookieHeader("job", u.toString(), null, "/", "strict")));
 		}
 		return j;
 	}
