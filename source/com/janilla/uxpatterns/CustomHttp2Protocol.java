@@ -23,43 +23,17 @@
  */
 package com.janilla.uxpatterns;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.ReadableByteChannel;
-
 import com.janilla.http.HttpRequest;
-import com.janilla.io.IO;
-import com.janilla.web.Handle;
-import com.janilla.web.Render;
+import com.janilla.http2.Http2Exchange;
+import com.janilla.http2.Http2Protocol;
+import com.janilla.reflect.Factory;
 
-public class FileUploadWeb {
+public class CustomHttp2Protocol extends Http2Protocol {
 
-	@Handle(method = "GET", path = "/file-upload")
-	public Page getPage() {
-		return new Page();
-	}
+	public Factory factory;
 
-	@Handle(method = "POST", path = "/file-upload/upload")
-	public void upload(HttpRequest request) throws IOException {
-		System.out.println(request.getHeaders());
-//		var c = (ReadableByteChannel) request.getBody();
-		var c = (ReadableByteChannel) null;
-		var b = ByteBuffer.allocate(1024);
-		var l = IO.repeat(i -> {
-			b.clear();
-			var n = c.read(b);
-//			System.out.println(n);
-//			try {
-//				Thread.sleep(10);
-//			} catch (InterruptedException e) {
-//				throw new RuntimeException(e);
-//			}
-			return n;
-		}, Integer.MAX_VALUE);
-		System.out.println(l);
-	}
-
-	@Render("FileUpload.html")
-	public record Page() {
+	@Override
+	protected Http2Exchange createExchange(HttpRequest request) {
+		return factory.create(Http2Exchange.class);
 	}
 }

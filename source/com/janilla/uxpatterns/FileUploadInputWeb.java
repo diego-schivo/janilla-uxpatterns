@@ -42,7 +42,8 @@ public class FileUploadInputWeb {
 	@Handle(method = "POST", path = "/file-upload-input/upload")
 	public Form upload(HttpRequest request) throws IOException {
 		System.out.println(request.getHeaders());
-		var c = (ReadableByteChannel) request.getBody();
+//		var c = (ReadableByteChannel) request.getBody();
+		var c = (ReadableByteChannel) null;
 		var b = ByteBuffer.allocate(1024);
 		var l = IO.repeat(i -> {
 			b.clear();
