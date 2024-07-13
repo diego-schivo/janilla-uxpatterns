@@ -23,25 +23,23 @@
  */
 package com.janilla.uxpatterns;
 
-import static java.util.Map.entry;
-
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import com.janilla.web.Handle;
 import com.janilla.web.Bind;
+import com.janilla.web.Handle;
 import com.janilla.web.Render;
 
 public class ValueSelectWeb {
 
-	private List<Entry<String, String>> makes = List.of(entry("audi", "Audi"), entry("toyota", "Toyota"),
-			entry("bmw", "BMW"));
+	private List<Map.Entry<String, String>> makes = List.of(Map.entry("audi", "Audi"), Map.entry("toyota", "Toyota"),
+			Map.entry("bmw", "BMW"));
 
-	private Map<String, List<Entry<String, String>>> models = Map.of("audi",
-			List.of(entry("a1", "A1"), entry("a4", "A4"), entry("a6", "A6")), "toyota",
-			List.of(entry("Landcruiser", "Landcruiser"), entry("Tacoma", "Tacoma"), entry("Yaris", "Yaris")), "bmw",
-			List.of(entry("325i", "325i"), entry("325ix", "325ix"), entry("X5", "X5")));
+	private Map<String, List<Map.Entry<String, String>>> models = Map.of("audi",
+			List.of(Map.entry("a1", "A1"), Map.entry("a4", "A4"), Map.entry("a6", "A6")), "toyota",
+			List.of(Map.entry("Landcruiser", "Landcruiser"), Map.entry("Tacoma", "Tacoma"),
+					Map.entry("Yaris", "Yaris")),
+			"bmw", List.of(Map.entry("325i", "325i"), Map.entry("325ix", "325ix"), Map.entry("X5", "X5")));
 
 	@Handle(method = "GET", path = "/value-select")
 	public Page getPage() {
@@ -59,6 +57,6 @@ public class ValueSelectWeb {
 	}
 
 	@Render("ValueSelect-OptionList.html")
-	public record OptionList(List<@Render("ValueSelect-Entry.html") Entry<String, String>> entries) {
+	public record OptionList(List<Map.@Render("ValueSelect-Entry.html") Entry<String, String>> entries) {
 	}
 }

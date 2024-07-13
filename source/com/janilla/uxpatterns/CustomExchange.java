@@ -33,13 +33,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.janilla.http.Http;
 import com.janilla.http.HttpExchange;
 import com.janilla.media.HeaderField;
-import com.janilla.uxpatterns.ProgressBarWeb.Job;
 
 public class CustomExchange extends HttpExchange {
 
-	private static Map<UUID, Job> jobs = new ConcurrentHashMap<>();
+	private static Map<UUID, ProgressBarWeb.Job> jobs = new ConcurrentHashMap<>();
 
-	public Job getJob(JobGetOption... options) {
+	public ProgressBarWeb.Job getJob(JobGetOption... options) {
 		var oo = Set.of(options);
 		var hh = getRequest().getHeaders();
 		var h = hh != null
@@ -57,7 +56,7 @@ public class CustomExchange extends HttpExchange {
 			}
 		} else if (oo.contains(JobGetOption.CREATE)) {
 			u = UUID.randomUUID();
-			j = new Job();
+			j = new ProgressBarWeb.Job();
 			jobs.put(u, j);
 			getResponse().getHeaders().add(
 					new HeaderField("Set-Cookie", Http.formatSetCookieHeader("job", u.toString(), null, "/", "strict")));

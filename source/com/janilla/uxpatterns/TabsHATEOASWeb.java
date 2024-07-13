@@ -23,10 +23,8 @@
  */
 package com.janilla.uxpatterns;
 
-import static java.util.Map.entry;
-
 import java.util.List;
-import java.util.Map.Entry;
+import java.util.Map;
 
 import com.janilla.frontend.RenderEngine;
 import com.janilla.frontend.RenderParticipant;
@@ -35,11 +33,11 @@ import com.janilla.web.Render;
 
 public class TabsHATEOASWeb {
 
-	private static List<Entry<String, String>> tabs = List.of(entry("Tab 1",
+	private static List<Map.Entry<String, String>> tabs = List.of(Map.entry("Tab 1",
 			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
-			entry("Tab 2",
+			Map.entry("Tab 2",
 					"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
-			entry("Tab 3",
+			Map.entry("Tab 3",
 					"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."));
 
 	@Handle(method = "GET", path = "/tabs-hateoas")
@@ -56,7 +54,7 @@ public class TabsHATEOASWeb {
 	public record Tabs(int tab) implements RenderParticipant {
 
 		public List<@Render("TabsHATEOAS-Tab.html") String> tabs() {
-			return tabs.stream().map(Entry::getKey).toList();
+			return tabs.stream().map(Map.Entry::getKey).toList();
 		}
 
 		public String text() {

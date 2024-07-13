@@ -23,9 +23,6 @@
  */
 package com.janilla.uxpatterns;
 
-import static com.janilla.uxpatterns.CustomExchange.JobGetOption.CREATE;
-import static com.janilla.uxpatterns.CustomExchange.JobGetOption.REMOVE;
-
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.janilla.web.Handle;
@@ -40,13 +37,13 @@ public class ProgressBarWeb {
 
 	@Handle(method = "GET", path = "/progress-bar/job")
 	public UI getUI(CustomExchange exchange) {
-		var j = exchange.getJob(REMOVE);
+		var j = exchange.getJob(CustomExchange.JobGetOption.REMOVE);
 		return new UI(j);
 	}
 
 	@Handle(method = "POST", path = "/progress-bar/start")
 	public UI startJob(CustomExchange exchange) {
-		var j = exchange.getJob(CREATE);
+		var j = exchange.getJob(CustomExchange.JobGetOption.CREATE);
 		Thread.ofVirtual().start(j);
 		return new UI(j);
 	}
