@@ -30,9 +30,9 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.janilla.http.HeaderField;
 import com.janilla.http.Http;
 import com.janilla.http.HttpExchange;
-import com.janilla.media.HeaderField;
 
 public class CustomExchange extends HttpExchange {
 

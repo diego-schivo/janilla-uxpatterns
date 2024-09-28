@@ -23,7 +23,7 @@
  */
 package com.janilla.uxpatterns;
 
-import com.janilla.media.HeaderField;
+import com.janilla.http.HeaderField;
 import com.janilla.http.HttpRequest;
 import com.janilla.web.Handle;
 import com.janilla.web.Render;
