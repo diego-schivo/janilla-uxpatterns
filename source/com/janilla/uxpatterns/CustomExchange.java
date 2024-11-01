@@ -32,6 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.janilla.http.HeaderField;
 import com.janilla.http.Http;
+import com.janilla.http.HttpCookie;
 import com.janilla.http.HttpExchange;
 
 public class CustomExchange extends HttpExchange {
@@ -51,15 +52,18 @@ public class CustomExchange extends HttpExchange {
 		if (j != null) {
 			if (j.progress >= 1.0 && oo.contains(JobGetOption.REMOVE)) {
 				jobs.remove(u);
-				getResponse().getHeaders().add(new HeaderField("Set-Cookie", Http.formatSetCookieHeader("job", null,
-						ZonedDateTime.of(1970, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC), "/", "strict")));
+				getResponse().getHeaders()
+						.add(new HeaderField("set-cookie",
+								HttpCookie.of("job", null)
+										.withExpires(ZonedDateTime.of(1970, 1, 1, 0, 0, 0, 0, ZoneOffset.UTC))
+										.withPath("/").withSameSite("strict").format()));
 			}
 		} else if (oo.contains(JobGetOption.CREATE)) {
 			u = UUID.randomUUID();
 			j = new ProgressBarWeb.Job();
 			jobs.put(u, j);
-			getResponse().getHeaders().add(
-					new HeaderField("Set-Cookie", Http.formatSetCookieHeader("job", u.toString(), null, "/", "strict")));
+			getResponse().getHeaders().add(new HeaderField("set-cookie",
+					HttpCookie.of("job", u.toString()).withPath("/").withSameSite("strict").format()));
 		}
 		return j;
 	}
