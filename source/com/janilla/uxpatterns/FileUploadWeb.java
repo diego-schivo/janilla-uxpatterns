@@ -23,9 +23,10 @@
  */
 package com.janilla.uxpatterns;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.Channels;
 
 import com.janilla.http.HttpRequest;
 import com.janilla.io.IO;
@@ -42,8 +43,7 @@ public class FileUploadWeb {
 	@Handle(method = "POST", path = "/file-upload/upload")
 	public void upload(HttpRequest request) throws IOException {
 		System.out.println(request.getHeaders());
-//		var c = (ReadableByteChannel) request.getBody();
-		var c = (ReadableByteChannel) null;
+		var c = Channels.newChannel(new ByteArrayInputStream(request.getBody()));
 		var b = ByteBuffer.allocate(1024);
 		var l = IO.repeat(i -> {
 			b.clear();
